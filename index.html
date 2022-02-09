@@ -142,6 +142,12 @@ h2{
     <body>
         <h1>Acces control</h1>
         <script>
+            function editit(what){
+                alert(what);
+            }
+            function deleteit(what2){
+                alert(what2);
+            }
        $.getJSON("showrecords.php", function(data){
         console.log(data);
         //    var visitors = [];
@@ -150,7 +156,9 @@ h2{
                var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" + 
                elem.ora_ingresso + "</td><td>" + elem.ora_uscita +  "</td><td>" + elem.covidControl + "</td><td>" + 
                elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.company + "</td><td>" + elem.entryReasons +
-               "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes + "</td></tr>";
+               "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes + 
+               "</td><td><input type='button' value='MODIFICA' onclick='editit("+ elem.id +")' /></td>"+ 
+               "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elem.id + ")'></td></tr>";
                $(newRow).appendTo("#jsondata");
            });
        });
