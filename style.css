@@ -141,3 +141,8 @@ h2 {
         text-align: center;
     }
 }
+
+/* ############ costummizzation #################### */
+.inserttab td input{
+    width:120px;
+}
