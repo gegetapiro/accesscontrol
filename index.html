@@ -17,10 +17,13 @@
 
         <script>
             function editit(what){
-                alert(what);
+                
             }
             function deleteit(what2){
-                alert(what2);
+                $.ajax({
+                    url:
+
+                });
             }
        $.getJSON("showrecords.php", function(data){
         console.log(data);
@@ -36,6 +39,7 @@
                $(newRow).appendTo("#jsondata");
            });
        });
+       
    </script>
         <div class="table-wrapper">
             <h1>Acces control</h1>
