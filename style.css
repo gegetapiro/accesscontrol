@@ -142,7 +142,22 @@ h2 {
     }
 }
 
+
 /* ############ costummizzation #################### */
-.inserttab td input{
-    width:120px;
+.inserttab{
+    margin: 12px;
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 0,3px;
+    border-color: gray;
+}
+ .inserttab label input{
+    float: right;
+}
+.inserttab input{
+    float: right;
+}
+.inserttab label{
+    margin: 12px;
+    
 }
