@@ -3,7 +3,7 @@
 <!-- Prova di aggiornamento su github -->
 <!-- Prova di aggiornamento su github secondo -->
 <!-- Prova di aggiornamento su github terzo -->
-<html lang="en">
+<html lang="🍝">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,12 +19,22 @@
             function editit(what){
                 
             }
-            function deleteit(what2){
-                $.ajax({
-                    url:
+            // function deleteit(what2){
+            //     alert("quale id " + what2);
+            //     $.ajax({
+            //       url: 'deleterecord.php',
+            //       type: 'POST',
+            //       data: {
+            //           wichid: what2
+            //       },
+            //       success: function(answer){
+            //           alert(answer);
+            //           location.reload(true);
 
-                });
-            }
+            //       }
+
+            //     });
+            // }
        $.getJSON("showrecords.php", function(data){
         console.log(data);
         //    var visitors = [];
@@ -42,7 +52,7 @@
        
    </script>
         <div class="table-wrapper">
-            <h1>Acces control</h1>
+            <h1>Controllo accessi</h1>
             <table class="fl-table">
                 <thead>
                     <tr>
@@ -89,17 +99,28 @@
             </thead> -->
             <tbody>
                 <div class="inserttab">
-                    <label for="date">DATA<input class="theinput" id="date" type="text"></label><br /><br />
-                    <label for="entry">ENTRATA</label><input id="entry" type="text"><br /><br />
-                    <label for="exit">USCITA</label><input id="exit" type="text"><br /><br />
-                    <label for="greenpass">GREENPASS</label><input id="greenpass" type="text"><br /><br />
-                    <label for="name">NOME</label><input id="name" type="text"><br /><br />
-                    <label for="surname">COGNOME</label><input id="surname" type="text"><br /><br />
-                    <label for="company">AZIENDA</label><input id="company" type="text"><br /><br />
-                    <label for="goal">MOTIVO</label><input id="goal" type="text"><br /><br />
-                    <label for="referent">REFERENTE</label><input id="referent" type="text"><br /><br />
-                    <label for="countrynum">TARGA</label><input id="countrynum" type="text"><br /><br />
-                    <label for="notes">NOTE</label><input id="notes" type="text"><br /><br />
+                    <label for="date">DATA<input class="theinput" id="date"
+                            type="text"></label><br /><br />
+                    <label for="entry">ENTRATA</label><input id="entry"
+                        type="text"><br /><br />
+                    <label for="exit">USCITA</label><input id="exit"
+                        type="text"><br /><br />
+                    <label for="greenpass">GREENPASS</label><input
+                        id="greenpass" type="text"><br /><br />
+                    <label for="name">NOME</label><input id="name" type="text"><br
+                        /><br />
+                    <label for="surname">COGNOME</label><input id="surname"
+                        type="text"><br /><br />
+                    <label for="company">AZIENDA</label><input id="company"
+                        type="text"><br /><br />
+                    <label for="goal">MOTIVO</label><input id="goal"
+                        type="text"><br /><br />
+                    <label for="referent">REFERENTE</label><input id="referent"
+                        type="text"><br /><br />
+                    <label for="countrynum">TARGA</label><input id="countrynum"
+                        type="text"><br /><br />
+                    <label for="notes">NOTE</label><input id="notes"
+                        type="text"><br /><br />
                     <input type="button" value="INVIA" id="sender" />
                 </div>
             </tbody>
