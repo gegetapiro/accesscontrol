@@ -16,25 +16,60 @@
     <body>
 
         <script>
+           function insertnew(){
+              var data =  $("#date").val();
+              var entrata = $("#entry").val();
+              var uscita = $("#exit").val();
+              var greenpass = $("#greenpass").val();
+              var nome = $("#name").val();
+              var cognome = $("#surname").val();
+              var azienda = $("#company").val();
+              var motivazione = $("#goal").val();
+              var referente = $("#referent").val();
+              var targa = $("#countrynum").val();
+              var note = $("#notes").val();
+                // alert("va " + data + entrata + uscita);
+            $.ajax({
+                url: "insert.php",
+                type: "POST",
+                data: {
+                    whichdata: data,
+                    whenentry: entrata,
+                    whenexit: uscita,
+                    passgreen: greenpass,
+                    whichname: nome,
+                    whichsurname: cognome,
+                    whichcompany: azienda,
+                    whichgoal: motivazione,
+                    whoreferent: referente,
+                    whichcnumber: targa,
+                    thenotes: note
+                },
+                success: function(response){
+                    alert("qui il: " + response);
+                }
+            });
+
+         }
             function editit(what){
                 
             }
-            // function deleteit(what2){
-            //     alert("quale id " + what2);
-            //     $.ajax({
-            //       url: 'deleterecord.php',
-            //       type: 'POST',
-            //       data: {
-            //           wichid: what2
-            //       },
-            //       success: function(answer){
-            //           alert(answer);
-            //           location.reload(true);
+            function deleteit(what2){
+                alert("quale id " + what2);
+                $.ajax({
+                  url: 'deleterecord.php',
+                  type: 'POST',
+                  data: {
+                      wichid: what2
+                  },
+                  success: function(answer){
+                      alert(answer);
+                      location.reload(true);
 
-            //       }
+                  }
 
-            //     });
-            // }
+                });
+            }
        $.getJSON("showrecords.php", function(data){
         console.log(data);
         //    var visitors = [];
@@ -121,7 +156,8 @@
                         type="text"><br /><br />
                     <label for="notes">NOTE</label><input id="notes"
                         type="text"><br /><br />
-                    <input type="button" value="INVIA" id="sender" />
+                    <input type="button" value="INVIA" id="sender" name="sender"
+                        onclick="insertnew()" />
                 </div>
             </tbody>
         </body>
