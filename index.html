@@ -1,34 +1,66 @@
-
 <!DOCTYPE html>
 <!-- Prova di aggiornamento su github -->
 <!-- Prova di aggiornamento su github secondo -->
 <!-- Prova di aggiornamento su github terzo -->
 <html lang="🍝">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Document</title>
-    </head>
-    <body>
 
-        <script>
-           function insertnew(){
-              var data =  $("#date").val();
-              var entrata = $("#entry").val();
-              var uscita = $("#exit").val();
-              var greenpass = $("#greenpass").val();
-              var nome = $("#name").val();
-              var cognome = $("#surname").val();
-              var azienda = $("#company").val();
-              var motivazione = $("#goal").val();
-              var referente = $("#referent").val();
-              var targa = $("#countrynum").val();
-              var note = $("#notes").val();
-                // alert("va " + data + entrata + uscita);
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getnow() {
+            var d = new Date();
+            alert("NUOVA DATA " + d);
+            var month = d.getMonth() + 1;
+            var ora = d.getHours();
+            var minuti = d.getMinutes();
+            if (month < 10) {
+                month = "0" + month;
+            }
+
+            var day = d.getDate();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            var year = d.getFullYear();
+            var output = day + "/" + month + "/" + year;
+            $("#date").val(output);
+            $("#entry").val(ora);
+            $("#entryminutes").val(minuti);
+
+
+            $("#adessoUscita").click(function () {
+                var e = new Date();
+                var oraUscita = e.getHours();
+                var minutiuscita = e.getMinutes();
+                $("#orauscita").val(oraUscita);
+                $("#minutiuscita").val(minutiuscita);
+
+
+            });
+        }
+        function insertnew() {
+            var data = $("#date").val();
+            var entrata = $("#entry").val();
+            var uscita = $("#exit").val();
+            var greenpass = $("#greenpass").val();
+            var nome = $("#name").val();
+            var cognome = $("#surname").val();
+            var azienda = $("#company").val();
+            var motivazione = $("#goal").val();
+            var referente = $("#referent").val();
+            var targa = $("#countrynum").val();
+            var note = $("#notes").val();
+            // alert("va " + data + entrata + uscita);
             $.ajax({
                 url: "insert.php",
                 type: "POST",
@@ -45,77 +77,57 @@
                     whichcnumber: targa,
                     thenotes: note
                 },
-                success: function(response){
+                success: function (response) {
                     alert("qui il: " + response);
+                    location.reload(true);
                 }
             });
 
-         }
-            function editit(what){
-                
-            }
-            function deleteit(what2){
-                alert("quale id " + what2);
-                $.ajax({
-                  url: 'deleterecord.php',
-                  type: 'POST',
-                  data: {
-                      wichid: what2
-                  },
-                  success: function(answer){
-                      alert(answer);
-                      location.reload(true);
+        }
+        function editit(what) {
+            $.ajax({
 
-                  }
+            })
 
-                });
-            }
-       $.getJSON("showrecords.php", function(data){
-        console.log(data);
-        //    var visitors = [];
-           $.each(data.visitatori, function(i, elem){
+        }
+        function deleteit(what2) {
+            alert("quale id " + what2);
+            $.ajax({
+                url: 'deleterecord.php',
+                type: 'POST',
+                data: {
+                    wichid: what2
+                },
+                success: function (answer) {
+                    alert(answer);
+                    location.reload(true);
 
-               var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" + 
-               elem.ora_ingresso + "</td><td>" + elem.ora_uscita +  "</td><td>" + elem.covidControl + "</td><td>" + 
-               elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.company + "</td><td>" + elem.entryReasons +
-               "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes + 
-               "</td><td><input type='button' value='MODIFICA' onclick='editit("+ elem.id +")' /></td>"+ 
-               "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elem.id + ")'></td></tr>";
-               $(newRow).appendTo("#jsondata");
-           });
-       });
-       
-   </script>
-        <div class="table-wrapper">
-            <h1>Controllo accessi</h1>
-            <table class="fl-table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Data</th>
-                        <th>Ingresso</th>
-                        <th>Uscita</th>
-                        <th>Greenpass</th>
-                        <th>Nome</th>
-                        <th>Cognome</th>
-                        <th>Azienda</th>
-                        <th>motivazione</th>
-                        <th>Referente</th>
-                        <th>Targa</th>
-                        <th>Note</th>
-                        <th>Modifica</th>
-                        <th>Cancella</th>
-                    </tr>
+                }
 
-                </thead>
-                <tbody id="jsondata">
+            });
+        }
+        $.getJSON("showrecords.php", function (data) {
+            console.log(data);
+            //    var visitors = [];
+            $.each(data.visitatori, function (i, elem) {
 
-                </tbody>
-            </table>
-        </div>
-        <table>
-            <!-- <thead>
+                var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" +
+                    elem.ora_ingresso + "</td><td>" + elem.ora_uscita + "</td><td>" + elem.covidControl + "</td><td>" +
+                    elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.company + "</td><td>" + elem.entryReasons +
+                    "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes +
+                    "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elem.id + ")' /></td>" +
+                    "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elem.id + ")'></td></tr>";
+                $(newRow).appendTo("#jsondata");
+            });
+        });
+
+    </script>
+    <div class="table-wrapper">
+        <h1>Controllo accessi</h1>
+        <table class="fl-table">
+            <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Data</th>
                     <th>Ingresso</th>
                     <th>Uscita</th>
@@ -127,38 +139,117 @@
                     <th>Referente</th>
                     <th>Targa</th>
                     <th>Note</th>
-                    <th>INSERISCI</th>
-
+                    <th>Modifica</th>
+                    <th>Cancella</th>
                 </tr>
 
-            </thead> -->
-            <tbody>
-                <div class="inserttab">
-                    <label for="date">DATA<input class="theinput" id="date"
-                            type="text"></label><br /><br />
-                    <label for="entry">ENTRATA</label><input id="entry"
-                        type="text"><br /><br />
-                    <label for="exit">USCITA</label><input id="exit"
-                        type="text"><br /><br />
-                    <label for="greenpass">GREENPASS</label><input
-                        id="greenpass" type="text"><br /><br />
-                    <label for="name">NOME</label><input id="name" type="text"><br
-                        /><br />
-                    <label for="surname">COGNOME</label><input id="surname"
-                        type="text"><br /><br />
-                    <label for="company">AZIENDA</label><input id="company"
-                        type="text"><br /><br />
-                    <label for="goal">MOTIVO</label><input id="goal"
-                        type="text"><br /><br />
-                    <label for="referent">REFERENTE</label><input id="referent"
-                        type="text"><br /><br />
-                    <label for="countrynum">TARGA</label><input id="countrynum"
-                        type="text"><br /><br />
-                    <label for="notes">NOTE</label><input id="notes"
-                        type="text"><br /><br />
-                    <input type="button" value="INVIA" id="sender" name="sender"
-                        onclick="insertnew()" />
-                </div>
+            </thead>
+            <tbody id="jsondata">
+
             </tbody>
-        </body>
-    </html>
+        </table>
+    </div>
+
+    <tbody>
+        <div class="inserttab">
+            <label for="date">DATA<input class="theinput" id="date" type="text" placeholder="dd/mm/aaaa"></label><input type="button"
+                onclick=" getnow()" value="ADESSO" /><br /><br />
+            <!-- <label for="entry">ENTRATA</label><input id="entry" type="text"><br /><br /> -->
+            <label for="entry">ENTRATA</label>
+            <span id="entrytime">
+            <select id="entry">
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select> :
+            <select id="entryminutes">
+                <script type="text/javascript">
+                    for (var i = 0; i <= 59; i++) {
+                        if (i < 10) {
+                            i = "0" + i;
+                        }
+                        document.write("<option value='" + i + "'>" + i + "</option>");
+                    }
+
+                </script>
+            </select></span><br /><br />
+            <!-- <label for="exit">USCITA</label><input id="exit" type="text"><br /><br /> -->
+            <label for="exit">USCITA</label>
+            <span id="exittime">
+            <select id="exit">
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select> :
+            <select id="minutiuscita">
+                <script type="text/javascript">
+                    for (var i = 0; i <= 59; i++) {
+                        if (i < 10) {
+                            i = "0" + i;
+                        }
+                        document.write("<option value='" + i + "'>" + i + "</option>");
+                    }
+
+                </script>
+            </select></span><br /><br />
+            <!-- <label for="greenpass">GREENPASS</label><input id="greenpass" type="text"><br /><br /> -->
+            <label for="greenpass">GREENPASS</label>
+            <select id="greenpass">
+                <option value="si">SI</option>
+                <option value="no">NO</option>
+            </select><br /><br />
+            <label for="name">NOME</label><input id="name" type="text"><br /><br />
+            <label for="surname">COGNOME</label><input id="surname" type="text"><br /><br />
+            <label for="company">AZIENDA</label><input id="company" type="text"><br /><br />
+            <label for="goal">MOTIVO</label><input id="goal" type="text"><br /><br />
+            <label for="referent">REFERENTE</label><input id="referent" type="text"><br /><br />
+            <label for="countrynum">TARGA</label><input id="countrynum" type="text"><br /><br />
+            <label for="notes">NOTE</label><input id="notes" type="text"><br /><br />
+            <input type="button" value="INVIA" id="sender" name="sender" onclick="insertnew()" />
+        </div>
+    </tbody>
+</body>
+
+</html>

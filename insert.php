@@ -1,18 +1,5 @@
 <?php
 include "connection.php";
-/* $date = "04/03/2022";
-$oraingr = "09:10";
-$orausc = "11:45";
-$greenpass = true;
-$thename = "Gianni";
-$thesecondname = "Bianchi";
-$company = "Catozzo S.p.A.";
-$reason = "we will do better";
-$referent = "Giancarlo Categani";
-$targa = "NB565MN";
-$note = "disse la vacca al mulo...";
- */
-
 $date = $_POST["whichdata"];
 $oraingr = $_POST["whenentry"];
 $orausc = $_POST["whenexit"];
