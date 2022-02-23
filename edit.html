@@ -15,37 +15,30 @@
 
     <script>
         function getnowExit() {
-            var d = new Date();
-            alert(d);
-            var month = d.getMonth() + 1;
-            var ora = d.getHours();
-            var minuti = d.getMinutes();
+            var d_ex = new Date();
+            alert(d_ex);
+            var month_ex = d_ex.getMonth() + 1;
+            var ora_ex = d_ex.getHours();
+            var minuti_ex = d_ex.getMinutes();
 
-            if (month < 10) {
-                month = "0" + month;
+            if (month_ex < 10) {
+                month_ex = "0" + month_ex;
             }
 
-            var day = d.getDate();
-            if (day < 10) {
-                day = "0" + day;
+            var day_ex = d_ex.getDate();
+            if (day_ex < 10) {
+                day_ex = "0" + day_ex;
             }
-            if (minuti < 10) {
-                minuti = "0" + minuti;
+            if (minuti_ex < 10) {
+                minuti_ex = "0" + minuti_ex;
             }
-            var year = d.getFullYear();
-            var output = day + "/" + month + "/" + year;
-            $("#date").val(output);
-            $("#entry").val(ora);
-            $("#entryminutes").val(minuti);
+            
+            $("#exit").val(ora_ex);
+            $("#minutiuscita").val(minuti_ex);
+            alert(minuti_ex);
 
 
-            $("#adessoUscita").click(function () {
-                var e = new Date();
-                var oraUscita = e.getHours();
-                var minutiuscita = e.getMinutes();
-                $("#orauscita").val(oraUscita);
-                $("#minutiuscita").val(minutiuscita);
-            });
+          
         }
 
 
