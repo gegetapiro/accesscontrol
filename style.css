@@ -177,3 +177,11 @@ h2 {
 #greenpass {
     float: right;
 }
+
+#areaedit{
+    /* display: none; */
+}
+#insertedit{
+    /* display: none; */
+    background-color: darksalmon;
+}
