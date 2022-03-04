@@ -182,6 +182,6 @@ h2 {
     /* display: none; */
 }
 #insertedit{
-    /* display: none; */
+    display: none;
     background-color: darksalmon;
 }

@@ -85,14 +85,31 @@
             });
 
         }
-        function editit(what) {
-            alert(what);
-            document.getElementById("insertedit").style.visibility = "hiden";
-            document.getElementById("areaedit").style.display = "block";
+        function editit(what3) {
 
-            /* $.ajax({
+            document.getElementById("insertedit").style.display = "block";
+            document.getElementById("insertnew").style.display = "none";
 
-            }) */
+            $.ajax({
+
+                url: "edit.php",
+                type: "POST",
+                data: {
+                    whattax: what3
+                },
+                success: function (responsex) {
+                    let arrayresp = JSON.parse(responsex);
+                    console.log(arrayresp["cognome"]);
+                    // console.log("ramo ok " + responsex);
+                    // $("date").val(arrayresp['datagiorno']);
+                    // document.getElementById("surname").value = arrayresp["cognome"];
+                    document.getElementById("name").value = "fanculo";
+                    $("name").val("fanculo");
+
+                },
+
+
+            });
 
         }
         function deleteit(what2) {
@@ -112,7 +129,7 @@
             });
         }
         $.getJSON("showrecords.php", function (data) {
-            console.log(data);
+            // console.log(data);
             $.each(data.visitatori, function (i, elem) {
 
                 var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" +
@@ -155,7 +172,7 @@
     </div>
 
     <tbody id="insertNew">
-        <div class="inserttab" id="insertnew" >
+        <div class="inserttab" id="insertnew">
             <label for="date">DATA<input class="theinput" id="date" type="text" placeholder="dd/mm/aaaa"></label><input
                 type="button" onclick=" getnow()" value="ADESSO" /><br /><br />
             <label for="entry">ENTRATA</label>
