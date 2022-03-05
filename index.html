@@ -86,12 +86,9 @@
 
         }
         function editit(what3) {
-
-            document.getElementById("insertedit").style.display = "block";
-            document.getElementById("insertnew").style.display = "none";
-
+            $("#insertedit").css("display", "block");
+            $("#insertnew").css("display", "none");
             $.ajax({
-
                 url: "edit.php",
                 type: "POST",
                 data: {
@@ -99,12 +96,22 @@
                 },
                 success: function (responsex) {
                     let arrayresp = JSON.parse(responsex);
-                    console.log(arrayresp["cognome"]);
-                    // console.log("ramo ok " + responsex);
-                    // $("date").val(arrayresp['datagiorno']);
-                    // document.getElementById("surname").value = arrayresp["cognome"];
-                    document.getElementById("name").value = "fanculo";
-                    $("name").val("fanculo");
+                    console.log(arrayresp);
+
+                    // document.getElementById("name").style.display = "none";
+                    $("#date2").val(arrayresp["datagiorno"]);
+                    // $("#entry2").val(arrayresp["ora_ingresso"]);
+                    // $("#entryminutes2").val(arrayresp["ora_uscita"]);
+                    // $("#exit2").val(arrayresp["covidControl"]);
+                    // $("#minutiuscita2").val(arrayresp["nome"]);
+                    // $("#greenpass2").val(arrayresp["cognome"]);
+                    $("#name2").val(arrayresp["nome"]);
+                    $("#surname2").val(arrayresp["cognome"]);
+                    $("#company2").val(arrayresp["company"]);
+                    $("#goal2").val(arrayresp["entryReasons"]);
+                    $("#referent2").val(arrayresp["referent"]);
+                    $("#countrynum2").val(arrayresp["licensePlate"]);
+                    $("#notes2").val(arrayresp["notes"]);
 
                 },
 
@@ -301,17 +308,13 @@
 
 
         </script>
-        <!--  <div id="editArea" class="table-wrapper">
 
-        </div> -->
-
-        <!-- <tbody> -->
         <div class="inserttab" id="insertedit">
-            <label for="date">DATA<input class="theinput" id="date" type="text" placeholder="dd/mm/aaaa"></label><input
+            <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input
                 type="button" onclick=" getnowExit()" value="ADESSO USCITA" /><br /><br />
             <label for="entry">ENTRATA</label>
-            <span id="entrytime">
-                <select id="entry">
+            <span id="entrytime2">
+                <select id="entry2">
                     <option value="00">00</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -337,7 +340,7 @@
                     <option value="22">22</option>
                     <option value="23">23</option>
                 </select> :
-                <select id="entryminutes">
+                <select id="entryminutes2">
                     <script type="text/javascript">
                         for (var i = 0; i <= 59; i++) {
                             if (i < 10) {
@@ -349,8 +352,8 @@
                     </script>
                 </select></span><br /><br />
             <label for="exit">USCITA</label>
-            <span id="exittime">
-                <select id="exit">
+            <span id="exittime2">
+                <select id="exit2">
                     <option value="00">00</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -376,7 +379,7 @@
                     <option value="22">22</option>
                     <option value="23">23</option>
                 </select> :
-                <select id="minutiuscita">
+                <select id="minutiuscita2">
                     <script type="text/javascript">
                         for (var i = 0; i <= 59; i++) {
                             if (i < 10) {
@@ -387,19 +390,19 @@
 
                     </script>
                 </select></span><br /><br />
-            <label for="greenpass">GREENPASS</label>
-            <select id="greenpass">
+            <label for="greenpass2">GREENPASS</label>
+            <select id="greenpass2">
                 <option value="si">SI</option>
                 <option value="no">NO</option>
             </select><br /><br />
-            <label for="name">NOME</label><input id="name" type="text"><br /><br />
-            <label for="surname">COGNOME</label><input id="surname" type="text"><br /><br />
-            <label for="company">AZIENDA</label><input id="company" type="text"><br /><br />
-            <label for="goal">MOTIVO</label><input id="goal" type="text"><br /><br />
-            <label for="referent">REFERENTE</label><input id="referent" type="text"><br /><br />
-            <label for="countrynum">TARGA</label><input id="countrynum" type="text"><br /><br />
-            <label for="notes">NOTE</label><input id="notes" type="text"><br /><br />
-            <input type="button" value="INVIA" id="sender" name="sender" onclick="editRecord()" />
+            <label for="name2">NOME</label><input id="name2" type="text"><br /><br />
+            <label for="surname2">COGNOME</label><input id="surname2" type="text"><br /><br />
+            <label for="company2">AZIENDA</label><input id="company2" type="text"><br /><br />
+            <label for="goal2">MOTIVO</label><input id="goal2" type="text"><br /><br />
+            <label for="referent2">REFERENTE</label><input id="referent2" type="text"><br /><br />
+            <label for="countrynum2">TARGA</label><input id="countrynum2" type="text"><br /><br />
+            <label for="notes2">NOTE</label><input id="notes2" type="text"><br /><br />
+            <input type="button" value="INVIA" id="sender2" name="sender2" onclick="editRecord()" />
         </div>
     </div>
     <!-- ################# end area di modifica ############################# -->
