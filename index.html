@@ -99,6 +99,7 @@
                     console.log(arrayresp);
 
                     // document.getElementById("name").style.display = "none";
+                    $("#theid").val(arrayresp["id"]);
                     $("#date2").val(arrayresp["datagiorno"]);
                     // $("#entry2").val(arrayresp["ora_ingresso"]);
                     // $("#entryminutes2").val(arrayresp["ora_uscita"]);
@@ -278,6 +279,11 @@
     <!-- ################# area di modifica ############################# -->
     <div id="areaedit">
         <script>
+            function editRecord() {
+                var id = $("#theid").val();
+                alert("id " + id);
+                
+            }
             function getnowExit() {
                 var d_ex = new Date();
                 alert(d_ex);
@@ -310,6 +316,7 @@
         </script>
 
         <div class="inserttab" id="insertedit">
+            <label for="theid">ID</label><input type="text" id="theid"><br /><br />
             <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input
                 type="button" onclick=" getnowExit()" value="ADESSO" /><br /><br />
             <label for="entry">ENTRATA</label>
