@@ -101,9 +101,10 @@
                     // document.getElementById("name").style.display = "none";
                     $("#theid").val(arrayresp["id"]);
                     $("#date2").val(arrayresp["datagiorno"]);
-                    // $("#entry2").val(arrayresp["ora_ingresso"]);
-                    // $("#entryminutes2").val(arrayresp["ora_uscita"]);
-                    // $("#exit2").val(arrayresp["covidControl"]);
+                    console.log("arrayesp " + arrayresp["ora_ingresso"].substr(3, 2));
+                    $("#entry2").val(arrayresp["ora_ingresso"].substr(0, 2));
+                    $("#entryminutes2").val(arrayresp["ora_ingresso"].substr(3, 2));
+                    $("#exit2").val(arrayresp["ora_uscita"].substr(0, 2));
                     // $("#minutiuscita2").val(arrayresp["nome"]);
                     // $("#greenpass2").val(arrayresp["cognome"]);
                     $("#name2").val(arrayresp["nome"]);
@@ -282,7 +283,14 @@
             function editRecord() {
                 var id = $("#theid").val();
                 alert("id " + id);
-                
+                $.ajax({
+                    url: "update.php",
+                    type: "POST",
+                    data: {
+                        cheid: $("#theid").val(),
+
+                    }
+                });
             }
             function getnowExit() {
                 var d_ex = new Date();
