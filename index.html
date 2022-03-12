@@ -101,12 +101,11 @@
                     // document.getElementById("name").style.display = "none";
                     $("#theid").val(arrayresp["id"]);
                     $("#date2").val(arrayresp["datagiorno"]);
-                    console.log("arrayesp " + arrayresp["ora_ingresso"].substr(3, 2));
                     $("#entry2").val(arrayresp["ora_ingresso"].substr(0, 2));
                     $("#entryminutes2").val(arrayresp["ora_ingresso"].substr(3, 2));
                     $("#exit2").val(arrayresp["ora_uscita"].substr(0, 2));
-                    $("#minutiuscita2").val(arrayresp["nome"].substr(3, 2));
-                    // $("#greenpass2").val(arrayresp["cognome"]);
+                    $("#minutiuscita2").val(arrayresp["ora_uscita"].substr(3, 2));
+                    $("#greenpass2").val(arrayresp["covidControl"]);
                     $("#name2").val(arrayresp["nome"]);
                     $("#surname2").val(arrayresp["cognome"]);
                     $("#company2").val(arrayresp["company"]);
@@ -287,7 +286,15 @@
                     url: "update.php",
                     type: "POST",
                     data: {
-                        cheid: $("#theid").val(),
+                        theid: $("#theid").val(),
+                        date2: $("#date2").val(),
+                        entry2: $("#entry2").val(),
+                        entryminutes2: $("#entryminutes2").val(),
+                        exit2: $("#exit2").val(),
+                        entryminutes2: $("#minutiuscita2").val(),
+                        greenpass2: $("#greenpass2").val(),
+
+
 
                     }
                 });
