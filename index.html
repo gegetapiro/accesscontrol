@@ -293,9 +293,18 @@
                         exit2: $("#exit2").val(),
                         entryminutes2: $("#minutiuscita2").val(),
                         greenpass2: $("#greenpass2").val(),
+                        name2: $("#name2").val(),
+                        surname2: $("#surname2").val(),
+                        company2: $("#company2").val(),
+                        goal2: $("#goal2").val(),
+                        referent2: $("#referent2").val(),
+                        countrynum2: $("#countrynum2").val(),
+                        notes2: $("#notes2").val(),
 
-
-
+                    },
+                    success: function (response2) {
+                        // console.log(response2);
+                        alert(response2);
                     }
                 });
             }
