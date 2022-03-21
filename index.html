@@ -16,7 +16,7 @@
     <script>
         function getnow() {
             var d = new Date();
-            alert("NUOVA DATA " + d);
+            // alert("NUOVA DATA " + d);
             var month = d.getMonth() + 1;
             var ora = d.getHours();
             var minuti = d.getMinutes();
@@ -96,7 +96,7 @@
                 },
                 success: function (responsex) {
                     let arrayresp = JSON.parse(responsex);
-                    console.log(arrayresp);
+                    // console.log(arrayresp);
 
                     // document.getElementById("name").style.display = "none";
                     $("#theid").val(arrayresp["id"]);
@@ -121,7 +121,7 @@
 
         }
         function deleteit(what2) {
-            alert("quale id " + what2);
+            // alert("quale id " + what2);
             $.ajax({
                 url: 'deleterecord.php',
                 type: 'POST',
@@ -129,7 +129,7 @@
                     wichid: what2
                 },
                 success: function (answer) {
-                    alert(answer);
+                    // alert(answer);
                     location.reload(true);
 
                 }
@@ -285,27 +285,32 @@
                 $.ajax({
                     url: "update.php",
                     type: "POST",
+                    dataType: "JSON",
+
                     data: {
                         theid: $("#theid").val(),
                         date2: $("#date2").val(),
                         entry2: $("#entry2").val(),
                         entryminutes2: $("#entryminutes2").val(),
                         exit2: $("#exit2").val(),
-                        entryminutes2: $("#minutiuscita2").val(),
-                        greenpass2: $("#greenpass2").val(),
+                        minutiuscita2: $("#minutiuscita2").val(),
+                        greenpass: $("#greenpass2").val(),
                         name2: $("#name2").val(),
                         surname2: $("#surname2").val(),
                         company2: $("#company2").val(),
                         goal2: $("#goal2").val(),
                         referent2: $("#referent2").val(),
                         countrynum2: $("#countrynum2").val(),
-                        notes2: $("#notes2").val(),
+                        notes2: $("#notes2").val()
 
                     },
                     success: function (response2) {
                         // console.log(response2);
-                        alert(response2);
-                    }
+                        alert("response 2 " + response2);
+                    },
+                    error: function (xhr, status) {
+                        alert("errore " + status.error);
+                    },
                 });
             }
             function getnowExit() {
