@@ -64,6 +64,7 @@
             // alert("va " + data + entrata + uscita);
             $.ajax({
                 url: "insert.php",
+                dataType: "JSON",
                 type: "POST",
                 data: {
                     whichdata: data,
@@ -280,8 +281,8 @@
     <div id="areaedit">
         <script>
             function editRecord() {
-                var id = $("#theid").val();
-                alert("id " + id);
+                var id = parseInt($("#theid").val());
+                alert(typeof (id));
                 $.ajax({
                     url: "update.php",
                     type: "POST",
@@ -308,9 +309,25 @@
                         // console.log(response2);
                         alert("response 2 " + response2);
                     },
-                    error: function (xhr, status) {
-                        alert("errore " + status.error);
-                    },
+                    error: function (xhr, exception) {
+                        var msg = "";
+                        if (xhr.status === 0) {
+                            msg = "Not connect.\n Verify Network." + xhr.responseText;
+                        } else if (xhr.status == 404) {
+                            msg = "Requested page not found. [404]" + xhr.responseText;
+                        } else if (xhr.status == 500) {
+                            msg = "Internal Server Error [500]." + xhr.responseText;
+                        } else if (exception === "parsererror") {
+                            msg = "Requested JSON parse failed.";
+                        } else if (exception === "timeout") {
+                            msg = "Time out error." + xhr.responseText;
+                        } else if (exception === "abort") {
+                            msg = "Ajax request aborted.";
+                        } else {
+                            msg = "Error:" + xhr.status + " " + xhr.responseText;
+                        }
+                        alert(msg);
+                    }
                 });
             }
             function getnowExit() {
