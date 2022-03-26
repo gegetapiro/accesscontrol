@@ -286,7 +286,7 @@
                 $.ajax({
                     url: "update.php",
                     type: "POST",
-                    dataType: "JSON",
+                    // dataType: "text",
 
                     data: {
                         theid: $("#theid").val(),
@@ -308,6 +308,8 @@
                     success: function (response2) {
                         // console.log(response2);
                         alert("response 2 " + response2);
+                        location.reload(true);
+
                     },
                     error: function (xhr, exception) {
                         var msg = "";

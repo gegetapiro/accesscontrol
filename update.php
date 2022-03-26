@@ -3,11 +3,10 @@ include "connection.php";
 if (!$mysqli) {
     echo "connection problem";
 } else {
-    $id = $_POST["theid"];
-    echo gettype($id);
+    $id = intval($_POST["theid"]);
     $data = $_POST["date2"];
-    $entrata = $_POST["entry2"] + ":" + $_POST["entryminutes2"];
-    $uscita = $_POST["exit2"] + ":" + $_POST["minutiuscita2"];
+    $entrata = $_POST["entry2"] . ":" . $_POST["entryminutes2"];
+    $uscita = $_POST["exit2"] . ":" . $_POST["minutiuscita2"];
     $greenpass = $_POST["greenpass"];
     $nome = $_POST["name2"];
     $cognome = $_POST["surname2"];
@@ -28,7 +27,7 @@ if (!$mysqli) {
     $motivo = "Modificare server";
     $referente = "Edited";
     $targa = "ttttttttttt";
-    $note = "barcollo";
+    $note = "barcollo cazzi";
  */
 
     $aquery = "UPDATE $table SET datagiorno = '$data', ora_ingresso = '$entrata', ora_uscita = '$uscita',   
