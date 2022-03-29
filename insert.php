@@ -21,7 +21,7 @@ if (!$mysqli) {
 
     $result = $mysqli->query($thequery);
     if (!$result) {
-        
+        echo "problematic query";
     } else {
         echo "succesuful query";
     }
