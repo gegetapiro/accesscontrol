@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="🍝">
+<html lang="🇮🇹">
 
 <head>
     <meta charset="UTF-8">
@@ -51,8 +51,8 @@
         }
         function insertnew() {
             var data = $("#date").val();
-            var entrata = $("#entry").val();
-            var uscita = $("#exit").val();
+            var entrata = $("#entry").val() + ":" + $("#entryminutes").val();
+            var uscita = $("#exit").val() + ":" + $("#minutiuscita").val();
             var greenpass = $("#greenpass").val();
             var nome = $("#name").val();
             var cognome = $("#surname").val();
@@ -64,7 +64,7 @@
             // alert("va " + data + entrata + uscita);
             $.ajax({
                 url: "insert.php",
-                dataType: "JSON",
+                // dataType: "JSON",
                 type: "POST",
                 data: {
                     whichdata: data,
@@ -179,6 +179,7 @@
             </tbody>
         </table>
     </div>
+    <!-- ################ Insert new area #######################################     -->
     <div id="insertnewdiv">
         <tbody id="insertNew">
             <div class="inserttab" id="insertnew">
@@ -279,6 +280,7 @@
             </div>
         </tbody>
     </div>
+    <!-- ################ end Insert new area #######################################     -->
     <!-- ################# area di modifica ############################# -->
     <div id="areaedit">
         <script>
