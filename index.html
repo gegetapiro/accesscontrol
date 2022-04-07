@@ -150,8 +150,31 @@
                 $(newRow).appendTo("#jsondata");
             });
         });
+        function inserttype() {
+            alert($("#searchbyfield").val());
+            $("#searchtxt").val()
 
+
+        }
     </script>
+    <div id="searchform">
+        <label for="searchbyfield">Ricerca</label>
+        <select id="searchbyfield" onchange="inserttype()">
+            <option value="datagiorno">Data</option>
+            <option value="ora_ingresso">Ora ingresso</option>
+            <option value="ora_uscita">Ora uscita</option>
+            <option value="covidControl">controllo greenpass</option>
+            <option value="nome">Nome</option>
+            <option value="cognome">Cognome</option>
+            <option value="company">Azienda</option>
+            <option value="entryReasons">Motivo</option>
+            <option value="referent">Referente</option>
+            <option value="licensePlate">Targa</option>
+            <option value="notes">Note</option>
+        </select>
+        <input type="text" id="searchtxt" placeholder="">
+        <input type="button" value="SEARCH">
+    </div>
     <div class="table-wrapper">
         <h1>Controllo accessi</h1>
         <table class="fl-table">
@@ -370,7 +393,7 @@
         <div class="inserttab" id="insertedit">
             <label for="theid">ID</label><input type="text" id="theid"><br /><br />
             <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input
-                type="button" onclick=" getnowExit()" value="ADESSO" /><br /><br />
+                type="button" onclick="getnowExit()" value="ADESSO" /><br /><br />
             <label for="entry">ENTRATA</label>
             <span id="entrytime2">
                 <select id="entry2">
