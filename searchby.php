@@ -4,8 +4,8 @@ if (!$mysqli) {
     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
     exit();
 } else {
-    $choicedfield = "cognome";
-    $fieldcontent = "Liverani";
+    $choicedfield = $_POST["field"];
+    $fieldcontent = $_POST["textin"];
     $thequery = "SELECT * FROM $table WHERE $choicedfield = '$fieldcontent'";
     $result = $mysqli->query($thequery);
     if (!$result) {

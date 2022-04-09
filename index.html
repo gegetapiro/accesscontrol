@@ -150,16 +150,32 @@
                 $(newRow).appendTo("#jsondata");
             });
         });
+        // #############################    area ricerca utenti  #################
         function inserttype() {
-            alert($("#searchbyfield").val());
-            $("#searchtxt").val()
+
+            $.ajax({
+                url: "searchby.php",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    field: $("#searchbyfield").val(),
+                    textin: $("#searchtxt").val()
+
+                },
+                success: function (report) {
+                    alert(report);
+
+                }
+
+            });
 
 
         }
     </script>
+
     <div id="searchform">
         <label for="searchbyfield">Ricerca</label>
-        <select id="searchbyfield" onchange="inserttype()">
+        <select id="searchbyfield" onchange="">
             <option value="datagiorno">Data</option>
             <option value="ora_ingresso">Ora ingresso</option>
             <option value="ora_uscita">Ora uscita</option>
@@ -173,8 +189,9 @@
             <option value="notes">Note</option>
         </select>
         <input type="text" id="searchtxt" placeholder="">
-        <input type="button" value="SEARCH">
+        <input type="button" value="SEARCH" onclick="inserttype()">
     </div>
+    <!-- ############################# fine area ricerca utenti  ################# -->
     <div class="table-wrapper">
         <h1>Controllo accessi</h1>
         <table class="fl-table">
