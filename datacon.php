@@ -7,6 +7,7 @@ $user = "root";
 //$password = 'Libellula5653£?';
 $password = '';
 $table = "accesses";
+$table2 = "lavoratoriammessi";
 // ################################################
 
 // ################ Produzione Aruba webbidea.com #####################

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="🍝">
+<html lang="🇮🇹">
 
 <head>
     <meta charset="UTF-8">
@@ -29,6 +29,9 @@
             if (day < 10) {
                 day = "0" + day;
             }
+            if (ora < 10) {
+                ora = "0" + ora;
+            }
             if (minuti < 10) {
                 minuti = "0" + minuti;
             }
@@ -51,8 +54,8 @@
         }
         function insertnew() {
             var data = $("#date").val();
-            var entrata = $("#entry").val();
-            var uscita = $("#exit").val();
+            var entrata = $("#entry").val() + ":" + $("#entryminutes").val();
+            var uscita = $("#exit").val() + ":" + $("#minutiuscita").val();
             var greenpass = $("#greenpass").val();
             var nome = $("#name").val();
             var cognome = $("#surname").val();
@@ -64,7 +67,7 @@
             // alert("va " + data + entrata + uscita);
             $.ajax({
                 url: "insert.php",
-                dataType: "JSON",
+                // dataType: "JSON",
                 type: "POST",
                 data: {
                     whichdata: data,
@@ -150,9 +153,91 @@
                 $(newRow).appendTo("#jsondata");
             });
         });
+        // #############################    area ricerca utenti  #################
+        function inserttype() {
 
+            $.ajax({
+                url: "searchby.php",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    field: $("#searchbyfield").val(),
+                    textin: $("#searchtxt").val()
+
+                },
+                success: function (report) {
+                    $("#reachtableres").css('display', 'block');
+                    $("#userlist").css('display', 'none');
+                    $("#insertnew").css('display', 'none');
+                    $.each(report.visitatori, function (e, elemb) {
+                        var newRowb = "<tr><td>" + elemb.id + "</td><td>" + elemb.datagiorno + "</td><td>" +
+                            elemb.ora_ingresso + "</td><td>" + elemb.ora_uscita + "</td><td>" + elemb.covidControl + "</td><td>" +
+                            elemb.nome + "</td><td>" + elemb.cognome + "</td><td>" + elemb.company + "</td><td>" + elemb.entryReasons +
+                            "</td><td>" + elemb.referent + "</td><td>" + elemb.licensePlate + "</td><td>" + elemb.notes +
+                            "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elemb.id + ")' /></td>" +
+                            "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elemb.id + ")'></td></tr>";
+
+                        $(newRowb).appendTo("#jsondatareasearchb");
+
+                    });
+
+                }
+
+            });
+            // ################# prova di pushing ##################
+
+        }
     </script>
-    <div class="table-wrapper">
+
+    <div id="searchform">
+        <label for="searchbyfield">Ricerca</label>
+        <select id="searchbyfield" onchange="">
+            <option value="datagiorno">Data</option>
+            <option value="ora_ingresso">Ora ingresso</option>
+            <option value="ora_uscita">Ora uscita</option>
+            <option value="covidControl">controllo greenpass</option>
+            <option value="nome">Nome</option>
+            <option value="cognome">Cognome</option>
+            <option value="company">Azienda</option>
+            <option value="entryReasons">Motivo</option>
+            <option value="referent">Referente</option>
+            <option value="licensePlate">Targa</option>
+            <option value="notes">Note</option>
+        </select>
+        <input type="text" id="searchtxt" placeholder="">
+        <input type="button" value="SEARCH" onclick="inserttype()">
+    </div>
+    <!--  ######### risultato ricerca #################################################### -->
+    <div id="reachtableres" class="table-wrapper">
+        <h1>Risultato ricerca</h1>
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>Ingresso</th>
+                    <th>Uscita</th>
+                    <th>Greenpass</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Azienda</th>
+                    <th>motivazione</th>
+                    <th>Referente</th>
+                    <th>Targa</th>
+                    <th>Note</th>
+                    <th>Modifica</th>
+                    <th>Cancella</th>
+                </tr>
+
+            </thead>
+            <tbody id="jsondatareasearchb">
+
+            </tbody>
+        </table>
+    </div>
+    <!--  ######### fine risultato ricerca #################################################### -->
+    <!-- ############################# fine area ricerca utenti  ################# -->
+    <div id="userlist" class="table-wrapper">
         <h1>Controllo accessi</h1>
         <table class="fl-table">
             <thead>
@@ -179,6 +264,7 @@
             </tbody>
         </table>
     </div>
+    <!-- ################ Insert new area #######################################     -->
     <div id="insertnewdiv">
         <tbody id="insertNew">
             <div class="inserttab" id="insertnew">
@@ -279,6 +365,7 @@
             </div>
         </tbody>
     </div>
+    <!-- ################ end Insert new area #######################################     -->
     <!-- ################# area di modifica ############################# -->
     <div id="areaedit">
         <script>
@@ -364,11 +451,11 @@
 
 
         </script>
-
+        <input type="button" value="CHIUDI MODIFICA" />
         <div class="inserttab" id="insertedit">
             <label for="theid">ID</label><input type="text" id="theid"><br /><br />
             <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input
-                type="button" onclick=" getnowExit()" value="ADESSO" /><br /><br />
+                type="button" onclick="getnowExit()" value="ADESSO" /><br /><br />
             <label for="entry">ENTRATA</label>
             <span id="entrytime2">
                 <select id="entry2">
@@ -462,7 +549,9 @@
             <input type="button" value="INVIA" id="sender2" name="sender2" onclick="editRecord()" />
         </div>
     </div>
-    <!-- ################# end area di modifica ############################# -->
+<!-- #########################################################
+https://www.html.it/articoli/jquery-autocomplete-plugin-tutorial-ed-esempi/
+################################################### -->
 </body>
 
 </html>
