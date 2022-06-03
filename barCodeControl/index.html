@@ -5,16 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <title>Inserimento autorizzati</title>
 </head>
 
 <body>
+    <script>
+        function putemploye() {
+            let codfisc = $("#codicefiscale").val();
+            $.ajax({
+                url: "compareCF.php",
+                type: "POST",
+                data: { codfisc: codfisc },
+                success: function (msgresponse) {
+                    alert(msgresponse);
+                }
+            });
+
+        }
+    </script>
     <form>
-        <label id="codicefiscale">Inserisci codice fiscale <input type="text" placeholder="codice fiscale"></label>
-        <input type="button" value="INVIA">
+        <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale"
+                placeholder="codice fiscale"></label>
+        <input type="button" onclick="putemploye()" value="INVIA">
     </form>
     <div>
-        <a href="insertAllows.html">Inserisci nuovo codice fiscale</a>
+        <br><br>
+        <a href="insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a><br><br>
+        <a href="../index.html">VISUALIZZA LAVORATORI PRESENTI</a>
     </div>
 </body>
 

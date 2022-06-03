@@ -15,10 +15,21 @@ if (!$mysqli) {
         // echo $elem[0];
         // echo date('d, m, yyyy') . "cazzi";
         //    echo  date('d-m-Y H:i:s', strtotime('+1 year', strtotime($today)) );
-        echo date('H:m');
+        $employe = $_POST["codfisc"];
         $datatime =  date('d/m/Y');
         $time = date('h:m');
-        // $insertquery = "INSERT * FROM $table (datagiorno, ora_ingresso, nome, cognome, company) VALUE ()"
+        // echo $datatime . " - " . $time;
+        // echo $elem[0];
+        echo gettype($time);
+        echo "---->";
+        $insertquery = "INSERT INTO $table (datagiorno, ora_ingresso, nome, cognome, company)
+         VALUE ('$datatime', '$time', '$elem[0]', '$elem[1]', '$elem[2]')";
+        $result_2 = $mysqli->query($insertquery);
+        if (!$result_2) {
+            echo "query fallita " . $mysqli->error;
+        } else {
+            echo "lavoratore " . $elem[0] . " " . $elem[1] . " inserito correttamente";
+        }
         // $mysqli->close();
     }
 }
