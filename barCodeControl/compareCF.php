@@ -3,8 +3,8 @@ include "../connection.php";
 if (!$mysqli) {
     echo "connessione fallita";
 } else {
-    $fiscode = "RNNDCC80A41C895O";
-    $searchquery = "SELECT * FROM $table2 WHERE codiceFiscale = '$fiscode'";
+    $employe = $_POST["codfisc"];
+    $searchquery = "SELECT * FROM $table2 WHERE codiceFiscale = '$employe'";
     $result = $mysqli->query($searchquery);
     if ($result->num_rows > 0) {
         // echo "file trovato";
@@ -15,9 +15,9 @@ if (!$mysqli) {
         // echo $elem[0];
         // echo date('d, m, yyyy') . "cazzi";
         //    echo  date('d-m-Y H:i:s', strtotime('+1 year', strtotime($today)) );
-        $employe = $_POST["codfisc"];
+
         $datatime =  date('d/m/Y');
-        $time = date('h:m');
+        $time = date('H:i');
         // echo $datatime . " - " . $time;
         // echo $elem[0];
         echo gettype($time);
