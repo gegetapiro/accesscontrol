@@ -48,14 +48,14 @@ if (!$mysqli) {
             } else {
 
                 /*  ############## vuol dire che il lavoratore è presente e sta uscendo ############### */
-                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[1]' AND cognome = '$elem[2]'";
+                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]'";
                 echo "lavoratore in uscita tabella = " . getType($time) . PHP_EOL;
                 // UPDATE accesses SET ora_uscita = '11:11' WHERE nome = 'Alessandro' AND cognome = 'Meloni'
                 $result_3 = $mysqli->query($queryinssertexit);
                 if (!$result_3) {
                     echo "fallito inserimento ora uscita";
                 } else {
-                    echo "lavoratore " . $elem[1] . " " . $elem[2] . " ha timbrato l'uscita alle ore " . $time;
+                    echo "lavoratore " . $elem[0] . " " . $elem[1] . " ha timbrato l'uscita alle ore " . $time;
                 }
             }
         }
