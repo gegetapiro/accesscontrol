@@ -28,7 +28,7 @@ if (!$mysqli) {
 
         if ($resultx2) {
 
-            echo "fino a qui va " . $elem[1] . PHP_EOL;
+            
 
             while ($rowcheck = $resultx2->fetch_array(MYSQLI_ASSOC)) {
                 array_push($elemcheck, $rowcheck['ora_ingresso']);
