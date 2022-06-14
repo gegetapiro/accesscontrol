@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <title>Inserimento autorizzati</title>
 </head>
 
 <body>
     <script>
+
         function putemploye() {
             let codfisc = $("#codicefiscale").val();
             $.ajax({
@@ -19,22 +21,28 @@
                 type: "POST",
                 data: { codfisc: codfisc },
                 success: function (msgresponse) {
-                    alert(" response = " + msgresponse);
+                    // alert(" response = " + msgresponse);
+                    location.reload(true);
                 }
             });
 
         }
+
     </script>
+    <h2>CONTROLLO CODICE FISCALE ED INSERIMENTO PRESENZE LAVORATORI</h2>
     <form>
-        <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale"
-                placeholder="codice fiscale"></label>
-        <input type="button" onclick="putemploye()" value="INVIA">
+        <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale" maxlength="16"
+                oninput="putemploye()"></label>
+        <!--  <input type="button" onclick="putemploye()" value="INVIA"> -->
     </form>
     <div>
         <br><br>
         <a href="insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a><br><br>
         <a href="../index.html">VISUALIZZA LAVORATORI PRESENTI</a>
     </div>
+    <script>
+        document.getElementById("codicefiscale").focus();
+    </script>
 </body>
 
 </html>
