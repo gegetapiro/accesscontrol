@@ -27,13 +27,39 @@
             });
 
         }
+        function changeinputtype(whattabut) {
+            if (whattabut == 0) {
+                document.getElementById("inputautomatic").style.display = "none";
+                document.getElementById("inputkeyboard").style.display = "block";
+
+            }
+            if (whattabut == 1) {
+                document.getElementById("inputautomatic").style.display = "block";
+                document.getElementById("codicefiscale").focus();
+                document.getElementById("inputkeyboard").style.display = "none";
+
+            }
+
+
+
+
+        }
 
     </script>
     <h2>CONTROLLO CODICE FISCALE ED INSERIMENTO PRESENZE LAVORATORI</h2>
-    <form>
+
+    <form id="inputautomatic">
+        <input type="button" value="PASSA AD INSERIMENTO DA TASTIERA" onclick="changeinputtype(0)">
+        <br><br>
         <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale" maxlength="16"
                 oninput="putemploye()"></label>
-        <!--  <input type="button" onclick="putemploye()" value="INVIA"> -->
+    </form>
+    <form id="inputkeyboard">
+        <input type="button" value="PASSA AD INSERIMENTO AUTOMATICO" onclick="changeinputtype(1)">
+        <br><br>
+        <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale"
+                maxlength="16"></label>
+        <input type="button" onclick="putemploye()" value="INVIA">
     </form>
     <div>
         <br><br>

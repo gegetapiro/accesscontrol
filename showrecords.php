@@ -6,7 +6,7 @@ if(!$mysqli){
   if($mysqli->connect_error){
   die('Errore di connessione (' . $result->connect_errno . ') '. $result->connect_error);
   }else{
-      $thequery = "SELECT * FROM $table";
+      $thequery = "SELECT * FROM $table ORDER BY `id` DESC";
      $result = mysqli_query($mysqli, $thequery);
      if($result->num_rows > 0){
          while ($row = $result->fetch_array(MYSQLI_ASSOC)){
