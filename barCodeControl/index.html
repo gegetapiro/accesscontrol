@@ -14,8 +14,8 @@
 <body>
     <script>
 
-        function putemploye() {
-            let codfisc = $("#codicefiscale").val();
+        function putemploye(inputtype) {
+            let codfisc = $(inputtype).val();
             $.ajax({
                 url: "compareCF.php",
                 type: "POST",
@@ -52,14 +52,14 @@
         <input type="button" value="PASSA AD INSERIMENTO DA TASTIERA" onclick="changeinputtype(0)">
         <br><br>
         <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale" maxlength="16"
-                oninput="putemploye()"></label>
+                oninput="putemploye('#codicefiscale')"></label>
     </form>
     <form id="inputkeyboard">
         <input type="button" value="PASSA AD INSERIMENTO AUTOMATICO" onclick="changeinputtype(1)">
         <br><br>
-        <label for="codicefiscale">Inserisci codice fiscale <input type="text" id="codicefiscale"
+        <label for="codicefiscalemanual">Inserisci codice fiscale <input type="text" id="codicefiscalemanual"
                 maxlength="16"></label>
-        <input type="button" onclick="putemploye()" value="INVIA">
+        <input type="button" onclick="putemploye('#codicefiscalemanual')" value="INVIA">
     </form>
     <div>
         <br><br>
