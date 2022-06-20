@@ -28,7 +28,7 @@ if (!$mysqli) {
 
         if ($resultx2) {
 
-            
+
 
             while ($rowcheck = $resultx2->fetch_array(MYSQLI_ASSOC)) {
                 array_push($elemcheck, $rowcheck['ora_ingresso']);
@@ -48,7 +48,7 @@ if (!$mysqli) {
             } else {
 
                 /*  ############## vuol dire che il lavoratore è presente e sta uscendo ############### */
-                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]'";
+                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]' AND datagiorno = '$datatime'";
                 echo "lavoratore in uscita tabella = " . getType($time) . PHP_EOL;
                 // UPDATE accesses SET ora_uscita = '11:11' WHERE nome = 'Alessandro' AND cognome = 'Meloni'
                 $result_3 = $mysqli->query($queryinssertexit);

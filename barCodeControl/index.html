@@ -22,7 +22,9 @@
                 data: { codfisc: codfisc },
                 success: function (msgresponse) {
                     // alert(" response = " + msgresponse);
-                    location.reload(true);
+
+                    // location.reload(true);
+                    $("#showresult").html(msgresponse);
                 }
             });
 
@@ -62,6 +64,8 @@
         <input type="button" onclick="putemploye('#codicefiscalemanual')" value="INVIA">
     </form>
     <div>
+        <br><br>
+        <div id="showresult"></div>
         <br><br>
         <a href="insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a><br><br>
         <a href="../index.html">VISUALIZZA LAVORATORI PRESENTI</a>
