@@ -205,13 +205,34 @@ h2 {
 }
 
 /* ####################### per pagina insertAllows.html ########################## */
-body{
-   background-color: burlywood;
+body {
+    background-color: burlywood;
 
+}
+
+#showresult {
+    visibility: hidden;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #ffffff;
+    width: fit-content;
+    padding: 6px;
+}
+
+.navigator {
+    color: #000000;
+    background-color: rgba(119, 113, 121, 0.63);
+    margin: 12px;
+    padding: 6px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    text-decoration: none;
 }
 
 /* ######################################################################################## */
 
-#inputkeyboard{
+#inputkeyboard {
     display: none;
 }

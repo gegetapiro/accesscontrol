@@ -35,21 +35,21 @@ if (!$mysqli) {
             }
 
             if ($elemcheck[0] == null) {
-                echo $elemcheck[0] . PHP_EOL;
-                echo "primo accesso del giorno " . PHP_EOL;
+                /*   echo $elemcheck[0] . PHP_EOL;
+                echo "primo accesso del giorno " . PHP_EOL; */
                 $insertquery = "INSERT INTO $table (datagiorno, ora_ingresso, nome, cognome, company)
                 VALUE ('$datatime', '$time', '$elem[0]', '$elem[1]', '$elem[2]')";
                 $result_2 = $mysqli->query($insertquery);
                 if (!$result_2) {
                     echo "query fallita " . $mysqli->error;
                 } else {
-                    echo "lavoratore " . $elem[0] . " " . $elem[1] . " inserito correttamente IN ENTRATA";
+                    echo "lavoratore " . $elem[0] . " " . $elem[1] . " inserito correttamente IN ENTRATA alle ore " . $time;
                 }
             } else {
 
                 /*  ############## vuol dire che il lavoratore è presente e sta uscendo ############### */
                 $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]' AND datagiorno = '$datatime'";
-                echo "lavoratore in uscita tabella = " . getType($time) . PHP_EOL;
+                // echo "lavoratore in uscita tabella = " . getType($time) . PHP_EOL;
                 // UPDATE accesses SET ora_uscita = '11:11' WHERE nome = 'Alessandro' AND cognome = 'Meloni'
                 $result_3 = $mysqli->query($queryinssertexit);
                 if (!$result_3) {

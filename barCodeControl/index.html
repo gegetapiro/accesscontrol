@@ -24,7 +24,9 @@
                     // alert(" response = " + msgresponse);
 
                     // location.reload(true);
+                    document.getElementById("showresult").style.visibility = "visible";
                     $("#showresult").html(msgresponse);
+                    $("#codicefiscalemanual").val("");
                 }
             });
 
@@ -67,8 +69,8 @@
         <br><br>
         <div id="showresult"></div>
         <br><br>
-        <a href="insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a><br><br>
-        <a href="../index.html">VISUALIZZA LAVORATORI PRESENTI</a>
+        <a href="insertAllows.html" class="navigator">INSERIMENTO NUOVO LAVORATORE AMMESSO</a><br><br>
+        <a href="../index.html" class="navigator">VISUALIZZA LAVORATORI PRESENTI</a>
     </div>
     <script>
         document.getElementById("codicefiscale").focus();
