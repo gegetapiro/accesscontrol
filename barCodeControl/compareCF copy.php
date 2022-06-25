@@ -59,5 +59,26 @@ if (!$mysqli) {
                 }
             }
         }
+
+
+
+
+        // #########################################################################
+
+
+
+        // echo $elem[0];
+        // echo date('d, m, yyyy') . "cazzi";
+        //    echo  date('d-m-Y H:i:s', strtotime('+1 year', strtotime($today)) );
+
+
+        // echo $datatime . " - " . $time;
+        // echo $elem[0];
+        /*  echo gettype($time);
+        echo "---->"; */
+
+
+
+        // $mysqli->close();
     }
 }
