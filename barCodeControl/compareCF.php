@@ -20,7 +20,7 @@ if (!$mysqli) {
 
         $time = date('H:i');
 
-        $checkquery = "SELECT * FROM $table WHERE datagiorno = '$datatime' AND nome = '$elem[0]' AND cognome = '$elem[1]'";
+        $checkquery = "SELECT * FROM $table WHERE datagiorno = '$datatime' AND nome = '$elem[0]' AND cognome = '$elem[1]' ORDER BY id DESC LIMIT 1";
 
         $elemcheck = array();
 
@@ -31,12 +31,11 @@ if (!$mysqli) {
 
 
             while ($rowcheck = $resultx2->fetch_array(MYSQLI_ASSOC)) {
-                array_push($elemcheck, $rowcheck['ora_ingresso']);
+                array_push($elemcheck, $rowcheck['ora_ingresso'], $rowcheck['ora_uscita'], $rowcheck['nome'], $rowcheck['cognome'], $rowcheck['company'], $rowcheck['id']);
             }
 
             if ($elemcheck[0] == null) {
-                /*   echo $elemcheck[0] . PHP_EOL;
-                echo "primo accesso del giorno " . PHP_EOL; */
+                /* primo accesso */
                 $insertquery = "INSERT INTO $table (datagiorno, ora_ingresso, nome, cognome, company)
                 VALUE ('$datatime', '$time', '$elem[0]', '$elem[1]', '$elem[2]')";
                 $result_2 = $mysqli->query($insertquery);
@@ -45,10 +44,10 @@ if (!$mysqli) {
                 } else {
                     echo "lavoratore " . $elem[0] . " " . $elem[1] . " inserito correttamente IN ENTRATA alle ore " . $time;
                 }
-            } else {
+            } elseif (($elemcheck[1] == null) and ($elemcheck[0] != null)) {
 
                 /*  ############## vuol dire che il lavoratore è presente e sta uscendo ############### */
-                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]' AND datagiorno = '$datatime'";
+                $queryinssertexit = "UPDATE $table SET ora_uscita = '$time' WHERE nome = '$elem[0]' AND cognome = '$elem[1]' AND datagiorno = '$datatime' AND id = $elemcheck[5]";
                 // echo "lavoratore in uscita tabella = " . getType($time) . PHP_EOL;
                 // UPDATE accesses SET ora_uscita = '11:11' WHERE nome = 'Alessandro' AND cognome = 'Meloni'
                 $result_3 = $mysqli->query($queryinssertexit);
@@ -57,7 +56,20 @@ if (!$mysqli) {
                 } else {
                     echo "lavoratore " . $elem[0] . " " . $elem[1] . " ha timbrato l'uscita alle ore " . $time;
                 }
+            } else {
+                /* primo accesso */
+                $insertquery = "INSERT INTO $table (datagiorno, ora_ingresso, nome, cognome, company)
+                 VALUE ('$datatime', '$time', '$elem[0]', '$elem[1]', '$elem[2]')";
+                $result_2 = $mysqli->query($insertquery);
+                if (!$result_2) {
+                    echo "query fallita " . $mysqli->error;
+                } else {
+                    echo "lavoratore " . $elem[0] . " " . $elem[1] . " IN ENTRATA SUCCESSIVA alle ore " . $time;
+                }
             }
         }
     }
 }
+
+
+// SELECT * FROM `accesses` WHERE datagiorno = '27/06/2022' nome = 'Giancarlo' AND cognome = 'Porotti' ORDER BY id DESC LIMIT 1
