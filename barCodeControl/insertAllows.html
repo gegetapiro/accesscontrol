@@ -20,6 +20,7 @@
             let cognome = $("#cognome").val();
             let azienda = $("#azienda").val();
             let note = $("#note").val();
+            let accesskind = $("#accesskind").val();
             $.ajax({
                 url: "insert.php",
                 type: "post",
@@ -28,7 +29,9 @@
                     nome: nome,
                     cognome: cognome,
                     azienda: azienda,
-                    note: note
+                    note: note,
+                    accesskind: accesskind
+
                 },
                 success: function (msg) {
                     alert(msg);
@@ -47,10 +50,10 @@
         <input type="text" id="azienda" name="azienda" placeholder="AZIENDA"><br /><br />
         <label for="accesskind">Tipologia di Visitatore</label><br>
         <select id="accesskind">
-            <option value="worker">Lavoratore autorizzato</option>
-            <option value="visitor">Visitatore</option>
-            <option value="driversupplier">Autista/Fornitore</option>
-            <option value="technician">Tecnico manutentore</option>
+            <option value="lavoratore_autorizzato">Lavoratore autorizzato</option>
+            <option value="visitatore">Visitatore</option>
+            <option value="autista_fornitore">Autista/Fornitore</option>
+            <option value="tecnico manutentore">Tecnico manutentore</option>
         </select>
         <br /><br />
         <input type="text" id="note" name="note" placeholder="NOTE"><br /><br />
