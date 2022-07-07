@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Soggetti ammessi al cantiere</title>
+</head>
+
+<body>
+    <script>
+        function editb(whattaIDedit) {
+            alert("modifica del record con id " + whattaIDedit);
+        }
+        function deleteb(whattaIDcancel) {
+            alert("cancellazione del record con id " + whattaIDcancel);
+
+        }
+        $.getJSON("allowWorkers.php", function (thedata) {
+            $.each(thedata.ammessi, function (e, elem) {
+                var rowNew = "<tr><td>" + elem.id + "</td><td>" + elem.codiceFiscale + "</td><td>" +
+                    elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.azienda + "</td><td>" +
+                    elem.note + "</td><td>" + elem.workerkind + "</td>" +
+                    "<td><input type='button' value='MODIFICA' onclick='editb(" + elem.id + ")' /></td>" +
+                    "<td><input type='button' value='CANCELLA' onclick='deleteb(" + elem.id + ")' /></td></tr>";
+                $(rowNew).appendTo("#jsondataallows");
+            });
+        });
+    </script>
+    <div id="userlist" class="table-wrapper">
+        <h1>Soggetti ammessi al cantiere</h1>
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Codice Fiscale</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Azienda</th>
+                    <th>Note</th>
+                    <th>Tipologia utente</th>
+                    <th>Modifica</th>
+                    <th>Cancella</th>
+                </tr>
+
+            </thead>
+            <tbody id="jsondataallows">
+
+            </tbody>
+</body>
+
+</html>
