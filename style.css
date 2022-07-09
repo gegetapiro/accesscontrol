@@ -241,13 +241,20 @@ body {
 ul {
     list-style-type: none;
     margin: 0;
+    margin-bottom: 28px;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
 }
 
 li {
     float: left;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffffff;
 }
 
 li a {
@@ -261,3 +268,27 @@ li a {
 li a:hover {
     background-color: #111;
 }
+
+.evidenced {
+    background-color: brown;
+}
+.formallowinput{
+    margin: 0 auto;
+}
+
+/* .title {
+   
+    background-color: #1d3144;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #2070e7;
+    padding: 12px;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 12px;
+    
+} */
+
+/* .titlecontainer {
+    text-align: center;
+} */
