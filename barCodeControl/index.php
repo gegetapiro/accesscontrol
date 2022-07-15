@@ -53,10 +53,10 @@
     </script>
 
     <ul>
-        <li><a href="insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
-        <li><a href="../index.html">VISUALIZZA LAVORATORI PRESENTI</a></li>
-        <li><a href="../showallows.html">VISUALIZZA LAVORATORI AMMESSI</a></li>
-        <li class="evidenced"><a href="index.html">TIMBRATORE</a></li>
+        <li><a href="insertAllows.php">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
+        <li><a href="../index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
+        <li><a href="../showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
+        <li class="evidenced"><a href="index.php">TIMBRATORE</a></li>
     </ul>
     <!-- <div class="titlecontainer">
         <h2 class="title">CONTROLLO CODICE FISCALE ED INSERIMENTO PRESENZE LAVORATORI</h2>

@@ -39,10 +39,10 @@
         });
     </script>
     <ul>
-        <li><a href="barCodeControl/insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
-        <li><a href="index.html">VISUALIZZA LAVORATORI PRESENTI</a></li>
-        <li class="evidenced"><a href="showallows.html">VISUALIZZA LAVORATORI AMMESSI</a></li>
-        <li><a href="barCodeControl/index.html">TIMBRATORE</a></li>
+        <li><a href="barCodeControl/insertAllows.php">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
+        <li><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
+        <li class="evidenced"><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
+        <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
     </ul>
     <div id="userlist" class="table-wrapper">
        <table class="fl-table">

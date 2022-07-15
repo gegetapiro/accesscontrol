@@ -188,10 +188,10 @@
         }
     </script>
     <ul>
-        <li><a href="barCodeControl/insertAllows.html">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
-        <li class="evidenced"><a href="index.html">VISUALIZZA LAVORATORI PRESENTI</a></li>
-        <li><a href="showallows.html">VISUALIZZA LAVORATORI AMMESSI</a></li>
-        <li><a href="barCodeControl/index.html">TIMBRATORE</a></li>
+        <li><a href="barCodeControl/insertAllows.php">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
+        <li class="evidenced"><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
+        <li><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
+        <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
     </ul>
    <!--  <div class="titlecontainer">
         <h2 class="title">CONTROLLO ACCESSI</h2>
