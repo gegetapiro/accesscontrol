@@ -8,6 +8,7 @@ $user = "root";
 $password = '';
 $table = "accesses";
 $table2 = "lavoratoriammessi";
+$table3 = "observers_modifiers";
 // ################################################
 
 // ################ Produzione Aruba webbidea.com #####################
