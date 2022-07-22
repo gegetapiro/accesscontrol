@@ -361,3 +361,10 @@ li a:hover {
 #btn2:hover {
     background: #3594D2;
 }
+
+#response{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    
+}

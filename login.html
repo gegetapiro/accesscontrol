@@ -25,7 +25,8 @@
                     pw: password
                 },
                 success: function (resp) {
-                    alert(resp);
+                    // var result = $('<div />').append(resp).find('#response').html();
+                    $("#response").val(resp);
                 }
 
             });
@@ -54,6 +55,7 @@
         </div> <!-- End Box -->
 
     </form>
+   <input id="response" type="text" value="prova">
 
 
 
