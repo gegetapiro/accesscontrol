@@ -368,3 +368,9 @@ li a:hover {
     border-color: #000000;
     
 }
+#response{
+    display: none;
+    width: auto;
+    font-size: larger;
+    margin: 20px;
+}

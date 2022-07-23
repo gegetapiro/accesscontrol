@@ -26,7 +26,16 @@
                 },
                 success: function (resp) {
                     // var result = $('<div />').append(resp).find('#response').html();
-                    $("#response").val(resp);
+                    // $("#response").val(resp);
+                    if ((resp == "Password errata") || (resp == "utente non trovato")) {
+                        $("#response").val(resp);
+                        $("#response").css('display', 'block');
+                        return false;
+                        // window.open("login.html");
+                    } else {
+                        window.open(resp);
+                    }
+
                 }
 
             });
@@ -50,12 +59,12 @@
             <!-- End Btn -->
             <input type="button" class="btn" onclick="startsessionvar()" value="ACCESSO">
 
-
+            <input id="response" type="text">
 
         </div> <!-- End Box -->
 
     </form>
-   <input id="response" type="text" value="prova">
+
 
 
 

@@ -192,6 +192,7 @@
         <li class="evidenced"><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
         <li><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
         <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
+        <!-- <li><a href="barCodeControl/index.php">LOG-OUT</a></li> -->
     </ul>
    <!--  <div class="titlecontainer">
         <h2 class="title">CONTROLLO ACCESSI</h2>
