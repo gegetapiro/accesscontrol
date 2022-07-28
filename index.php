@@ -1,286 +1,475 @@
-<!DOCTYPE html>
-<html lang="🇮🇹">
+<?php
+session_start();
+if ($_SESSION["usersession"] != "sessionOK") {
+    header("Location: login.html");
+} else {
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Document</title>
-</head>
+?>
 
-<body>
-    <script>
-        function getnow() {
-            var d = new Date();
-            // alert("NUOVA DATA " + d);
-            var month = d.getMonth() + 1;
-            var ora = d.getHours();
-            var minuti = d.getMinutes();
+    <!DOCTYPE html>
+    <html lang="🇮🇹">
 
-            if (month < 10) {
-                month = "0" + month;
-            }
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Document</title>
+    </head>
 
-            var day = d.getDate();
-            if (day < 10) {
-                day = "0" + day;
-            }
-            if (ora < 10) {
-                ora = "0" + ora;
-            }
-            if (minuti < 10) {
-                minuti = "0" + minuti;
-            }
-            var year = d.getFullYear();
-            var output = day + "/" + month + "/" + year;
-            $("#date").val(output);
-            $("#entry").val(ora);
-            $("#entryminutes").val(minuti);
+    <body>
+        <script>
+            function getnow() {
+                var d = new Date();
+                // alert("NUOVA DATA " + d);
+                var month = d.getMonth() + 1;
+                var ora = d.getHours();
+                var minuti = d.getMinutes();
 
-
-            $("#adessoUscita").click(function () {
-                var e = new Date();
-                var oraUscita = e.getHours();
-                var minutiuscita = e.getMinutes();
-                $("#orauscita").val(oraUscita);
-                $("#minutiuscita").val(minutiuscita);
-
-
-            });
-        }
-        function insertnew() {
-            var data = $("#date").val();
-            var entrata = $("#entry").val() + ":" + $("#entryminutes").val();
-            var uscita = $("#exit").val() + ":" + $("#minutiuscita").val();
-            var greenpass = $("#greenpass").val();
-            var nome = $("#name").val();
-            var cognome = $("#surname").val();
-            var azienda = $("#company").val();
-            var motivazione = $("#goal").val();
-            var referente = $("#referent").val();
-            var targa = $("#countrynum").val();
-            var note = $("#notes").val();
-            // alert("va " + data + entrata + uscita);
-            $.ajax({
-                url: "insert.php",
-                // dataType: "JSON",
-                type: "POST",
-                data: {
-                    whichdata: data,
-                    whenentry: entrata,
-                    whenexit: uscita,
-                    passgreen: greenpass,
-                    whichname: nome,
-                    whichsurname: cognome,
-                    whichcompany: azienda,
-                    whichgoal: motivazione,
-                    whoreferent: referente,
-                    whichcnumber: targa,
-                    thenotes: note
-                },
-                success: function (response) {
-                    alert("qui il: " + response);
-                    location.reload(true);
-                }
-            });
-
-        }
-        function editit(what3) {
-            $("#insertedit").css("display", "block");
-            $("#insertnew").css("display", "none");
-            $.ajax({
-                url: "edit.php",
-                type: "POST",
-                data: {
-                    whattax: what3
-                },
-                success: function (responsex) {
-                    let arrayresp = JSON.parse(responsex);
-                    // console.log(arrayresp);
-
-                    // document.getElementById("name").style.display = "none";
-                    $("#theid").val(arrayresp["id"]);
-                    $("#date2").val(arrayresp["datagiorno"]);
-                    $("#entry2").val(arrayresp["ora_ingresso"].substr(0, 2));
-                    $("#entryminutes2").val(arrayresp["ora_ingresso"].substr(3, 2));
-                    $("#exit2").val(arrayresp["ora_uscita"].substr(0, 2));
-                    $("#minutiuscita2").val(arrayresp["ora_uscita"].substr(3, 2));
-                    $("#greenpass2").val(arrayresp["covidControl"]);
-                    $("#name2").val(arrayresp["nome"]);
-                    $("#surname2").val(arrayresp["cognome"]);
-                    $("#company2").val(arrayresp["company"]);
-                    $("#goal2").val(arrayresp["entryReasons"]);
-                    $("#referent2").val(arrayresp["referent"]);
-                    $("#countrynum2").val(arrayresp["licensePlate"]);
-                    $("#notes2").val(arrayresp["notes"]);
-
-                },
-
-
-            });
-
-        }
-        function deleteit(what2) {
-            // alert("quale id " + what2);
-            $.ajax({
-                url: 'deleterecord.php',
-                type: 'POST',
-                data: {
-                    wichid: what2
-                },
-                success: function (answer) {
-                    // alert(answer);
-                    location.reload(true);
-
+                if (month < 10) {
+                    month = "0" + month;
                 }
 
-            });
-        }
-        $.getJSON("showrecords.php", function (data) {
-            // console.log(data);
-            $.each(data.visitatori, function (i, elem) {
-
-                var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" +
-                    elem.ora_ingresso + "</td><td>" + elem.ora_uscita + "</td><td>" + elem.covidControl + "</td><td>" +
-                    elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.company + "</td><td>" + elem.entryReasons +
-                    "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes +
-                    "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elem.id + ")' /></td>" +
-                    "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elem.id + ")'></td></tr>";
-                $(newRow).appendTo("#jsondata");
-            });
-        });
-        // #############################    area ricerca utenti  #################
-        function inserttype() {
-
-            $.ajax({
-                url: "searchby.php",
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    field: $("#searchbyfield").val(),
-                    textin: $("#searchtxt").val()
-
-                },
-                success: function (report) {
-                    $("#reachtableres").css('display', 'block');
-                    $("#userlist").css('display', 'none');
-                    $("#insertnew").css('display', 'none');
-                    $.each(report.visitatori, function (e, elemb) {
-                        var newRowb = "<tr><td>" + elemb.id + "</td><td>" + elemb.datagiorno + "</td><td>" +
-                            elemb.ora_ingresso + "</td><td>" + elemb.ora_uscita + "</td><td>" + elemb.covidControl + "</td><td>" +
-                            elemb.nome + "</td><td>" + elemb.cognome + "</td><td>" + elemb.company + "</td><td>" + elemb.entryReasons +
-                            "</td><td>" + elemb.referent + "</td><td>" + elemb.licensePlate + "</td><td>" + elemb.notes +
-                            "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elemb.id + ")' /></td>" +
-                            "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elemb.id + ")'></td></tr>";
-
-                        $(newRowb).appendTo("#jsondatareasearchb");
-
-                    });
-
+                var day = d.getDate();
+                if (day < 10) {
+                    day = "0" + day;
                 }
+                if (ora < 10) {
+                    ora = "0" + ora;
+                }
+                if (minuti < 10) {
+                    minuti = "0" + minuti;
+                }
+                var year = d.getFullYear();
+                var output = day + "/" + month + "/" + year;
+                $("#date").val(output);
+                $("#entry").val(ora);
+                $("#entryminutes").val(minuti);
 
+
+                $("#adessoUscita").click(function() {
+                    var e = new Date();
+                    var oraUscita = e.getHours();
+                    var minutiuscita = e.getMinutes();
+                    $("#orauscita").val(oraUscita);
+                    $("#minutiuscita").val(minutiuscita);
+
+
+                });
+            }
+
+            function insertnew() {
+                var data = $("#date").val();
+                var entrata = $("#entry").val() + ":" + $("#entryminutes").val();
+                var uscita = $("#exit").val() + ":" + $("#minutiuscita").val();
+                var greenpass = $("#greenpass").val();
+                var nome = $("#name").val();
+                var cognome = $("#surname").val();
+                var azienda = $("#company").val();
+                var motivazione = $("#goal").val();
+                var referente = $("#referent").val();
+                var targa = $("#countrynum").val();
+                var note = $("#notes").val();
+                // alert("va " + data + entrata + uscita);
+                $.ajax({
+                    url: "insert.php",
+                    // dataType: "JSON",
+                    type: "POST",
+                    data: {
+                        whichdata: data,
+                        whenentry: entrata,
+                        whenexit: uscita,
+                        passgreen: greenpass,
+                        whichname: nome,
+                        whichsurname: cognome,
+                        whichcompany: azienda,
+                        whichgoal: motivazione,
+                        whoreferent: referente,
+                        whichcnumber: targa,
+                        thenotes: note
+                    },
+                    success: function(response) {
+                        alert("qui il: " + response);
+                        location.reload(true);
+                    }
+                });
+
+            }
+
+            function editit(what3) {
+                $("#insertedit").css("display", "block");
+                $("#insertnew").css("display", "none");
+                $.ajax({
+                    url: "edit.php",
+                    type: "POST",
+                    data: {
+                        whattax: what3
+                    },
+                    success: function(responsex) {
+                        let arrayresp = JSON.parse(responsex);
+                        // console.log(arrayresp);
+
+                        // document.getElementById("name").style.display = "none";
+                        $("#theid").val(arrayresp["id"]);
+                        $("#date2").val(arrayresp["datagiorno"]);
+                        $("#entry2").val(arrayresp["ora_ingresso"].substr(0, 2));
+                        $("#entryminutes2").val(arrayresp["ora_ingresso"].substr(3, 2));
+                        $("#exit2").val(arrayresp["ora_uscita"].substr(0, 2));
+                        $("#minutiuscita2").val(arrayresp["ora_uscita"].substr(3, 2));
+                        $("#greenpass2").val(arrayresp["covidControl"]);
+                        $("#name2").val(arrayresp["nome"]);
+                        $("#surname2").val(arrayresp["cognome"]);
+                        $("#company2").val(arrayresp["company"]);
+                        $("#goal2").val(arrayresp["entryReasons"]);
+                        $("#referent2").val(arrayresp["referent"]);
+                        $("#countrynum2").val(arrayresp["licensePlate"]);
+                        $("#notes2").val(arrayresp["notes"]);
+
+                    },
+
+
+                });
+
+            }
+
+            function deleteit(what2) {
+                // alert("quale id " + what2);
+                $.ajax({
+                    url: 'deleterecord.php',
+                    type: 'POST',
+                    data: {
+                        wichid: what2
+                    },
+                    success: function(answer) {
+                        // alert(answer);
+                        location.reload(true);
+
+                    }
+
+                });
+            }
+            $.getJSON("showrecords.php", function(data) {
+                // console.log(data);
+                $.each(data.visitatori, function(i, elem) {
+
+                    var newRow = "<tr><td>" + elem.id + "</td><td>" + elem.datagiorno + "</td><td>" +
+                        elem.ora_ingresso + "</td><td>" + elem.ora_uscita + "</td><td>" + elem.covidControl + "</td><td>" +
+                        elem.nome + "</td><td>" + elem.cognome + "</td><td>" + elem.company + "</td><td>" + elem.entryReasons +
+                        "</td><td>" + elem.referent + "</td><td>" + elem.licensePlate + "</td><td>" + elem.notes +
+                        "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elem.id + ")' /></td>" +
+                        "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elem.id + ")'></td></tr>";
+                    $(newRow).appendTo("#jsondata");
+                });
             });
-            // ################# prova di pushing ##################
+            // #############################    area ricerca utenti  #################
+            function inserttype() {
 
-        }
-    </script>
-    <ul>
-        <li><a href="barCodeControl/insertAllows.php">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
-        <li class="evidenced"><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
-        <li><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
-        <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
-        <!-- <li><a href="barCodeControl/index.php">LOG-OUT</a></li> -->
-    </ul>
-   <!--  <div class="titlecontainer">
+                $.ajax({
+                    url: "searchby.php",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        field: $("#searchbyfield").val(),
+                        textin: $("#searchtxt").val()
+
+                    },
+                    success: function(report) {
+                        $("#reachtableres").css('display', 'block');
+                        $("#userlist").css('display', 'none');
+                        $("#insertnew").css('display', 'none');
+                        $.each(report.visitatori, function(e, elemb) {
+                            var newRowb = "<tr><td>" + elemb.id + "</td><td>" + elemb.datagiorno + "</td><td>" +
+                                elemb.ora_ingresso + "</td><td>" + elemb.ora_uscita + "</td><td>" + elemb.covidControl + "</td><td>" +
+                                elemb.nome + "</td><td>" + elemb.cognome + "</td><td>" + elemb.company + "</td><td>" + elemb.entryReasons +
+                                "</td><td>" + elemb.referent + "</td><td>" + elemb.licensePlate + "</td><td>" + elemb.notes +
+                                "</td><td><input type='button' value='MODIFICA' onclick='editit(" + elemb.id + ")' /></td>" +
+                                "<td><input type='button' value='CANCELLA' onclick='deleteit(" + elemb.id + ")'></td></tr>";
+
+                            $(newRowb).appendTo("#jsondatareasearchb");
+
+                        });
+
+                    }
+
+                });
+                // ################# prova di pushing ##################
+
+            }
+        </script>
+        <ul>
+            <li><a href="barCodeControl/insertAllows.php">INSERIMENTO NUOVO LAVORATORE AMMESSO</a></li>
+            <li class="evidenced"><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
+            <li><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
+            <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
+            <!-- <li><a href="barCodeControl/index.php">LOG-OUT</a></li> -->
+        </ul>
+        <!--  <div class="titlecontainer">
         <h2 class="title">CONTROLLO ACCESSI</h2>
     </div> -->
-    <div id="searchform">
-        <label for="searchbyfield">Ricerca</label>
-        <select id="searchbyfield" onchange="">
-            <option value="datagiorno">Data</option>
-            <option value="ora_ingresso">Ora ingresso</option>
-            <option value="ora_uscita">Ora uscita</option>
-            <option value="covidControl">controllo greenpass</option>
-            <option value="nome">Nome</option>
-            <option value="cognome">Cognome</option>
-            <option value="company">Azienda</option>
-            <option value="entryReasons">Motivo</option>
-            <option value="referent">Referente</option>
-            <option value="licensePlate">Targa</option>
-            <option value="notes">Note</option>
-        </select>
-        <input type="text" id="searchtxt" placeholder="">
-        <input type="button" value="SEARCH" onclick="inserttype()">
-    </div>
-    <!--  ######### risultato ricerca #################################################### -->
-    <div id="reachtableres" class="table-wrapper">
-        <h1>Risultato ricerca</h1>
-        <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Data</th>
-                    <th>Ingresso</th>
-                    <th>Uscita</th>
-                    <th>Greenpass</th>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>Azienda</th>
-                    <th>motivazione</th>
-                    <th>Referente</th>
-                    <th>Targa</th>
-                    <th>Note</th>
-                    <th>Modifica</th>
-                    <th>Cancella</th>
-                </tr>
+        <div id="searchform">
+            <label for="searchbyfield">Ricerca</label>
+            <select id="searchbyfield" onchange="">
+                <option value="datagiorno">Data</option>
+                <option value="ora_ingresso">Ora ingresso</option>
+                <option value="ora_uscita">Ora uscita</option>
+                <option value="covidControl">controllo greenpass</option>
+                <option value="nome">Nome</option>
+                <option value="cognome">Cognome</option>
+                <option value="company">Azienda</option>
+                <option value="entryReasons">Motivo</option>
+                <option value="referent">Referente</option>
+                <option value="licensePlate">Targa</option>
+                <option value="notes">Note</option>
+            </select>
+            <input type="text" id="searchtxt" placeholder="">
+            <input type="button" value="SEARCH" onclick="inserttype()">
+        </div>
+        <!--  ######### risultato ricerca #################################################### -->
+        <div id="reachtableres" class="table-wrapper">
+            <h1>Risultato ricerca</h1>
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Data</th>
+                        <th>Ingresso</th>
+                        <th>Uscita</th>
+                        <th>Greenpass</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Azienda</th>
+                        <th>motivazione</th>
+                        <th>Referente</th>
+                        <th>Targa</th>
+                        <th>Note</th>
+                        <th>Modifica</th>
+                        <th>Cancella</th>
+                    </tr>
 
-            </thead>
-            <tbody id="jsondatareasearchb">
+                </thead>
+                <tbody id="jsondatareasearchb">
 
+                </tbody>
+            </table>
+        </div>
+        <!--  ######### fine risultato ricerca #################################################### -->
+        <!-- ############################# fine area ricerca utenti  ################# -->
+        <div id="userlist" class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Data</th>
+                        <th>Ingresso</th>
+                        <th>Uscita</th>
+                        <th>Greenpass</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Azienda</th>
+                        <th>motivazione</th>
+                        <th>Referente</th>
+                        <th>Targa</th>
+                        <th>Note</th>
+                        <th>Modifica</th>
+                        <th>Cancella</th>
+                    </tr>
+
+                </thead>
+                <tbody id="jsondata">
+
+                </tbody>
+            </table>
+        </div>
+        <!-- ################ Insert new area #######################################     -->
+        <div id="insertnewdiv">
+            <tbody id="insertNew">
+                <div class="inserttab" id="insertnew">
+                    <label for="date">DATA<input class="theinput" id="date" type="text" placeholder="dd/mm/aaaa"></label><input type="button" onclick=" getnow()" value="ADESSO" /><br /><br />
+                    <label for="entry">ENTRATA</label>
+                    <span id="entrytime">
+                        <select id="entry">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select> :
+                        <select id="entryminutes">
+                            <script type="text/javascript">
+                                for (var i = 0; i <= 59; i++) {
+                                    if (i < 10) {
+                                        i = "0" + i;
+                                    }
+                                    document.write("<option value='" + i + "'>" + i + "</option>");
+                                }
+                            </script>
+                        </select></span><br /><br />
+                    <label for="exit">USCITA</label>
+                    <span id="exittime">
+                        <select id="exit">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select> :
+                        <select id="minutiuscita">
+                            <script type="text/javascript">
+                                for (var i = 0; i <= 59; i++) {
+                                    if (i < 10) {
+                                        i = "0" + i;
+                                    }
+                                    document.write("<option value='" + i + "'>" + i + "</option>");
+                                }
+                            </script>
+                        </select></span><br /><br />
+                    <label for="greenpass">GREENPASS</label>
+                    <select id="greenpass">
+                        <option value="si">SI</option>
+                        <option value="no">NO</option>
+                    </select><br /><br />
+                    <label for="name">NOME</label><input id="name" type="text"><br /><br />
+                    <label for="surname">COGNOME</label><input id="surname" type="text"><br /><br />
+                    <label for="company">AZIENDA</label><input id="company" type="text"><br /><br />
+                    <label for="goal">MOTIVO</label><input id="goal" type="text"><br /><br />
+                    <label for="referent">REFERENTE</label><input id="referent" type="text"><br /><br />
+                    <label for="countrynum">TARGA</label><input id="countrynum" type="text"><br /><br />
+                    <label for="notes">NOTE</label><input id="notes" type="text"><br /><br />
+                    <input type="button" value="INVIA" id="sender" name="sender" onclick="insertnew()" />
+                </div>
             </tbody>
-        </table>
-    </div>
-    <!--  ######### fine risultato ricerca #################################################### -->
-    <!-- ############################# fine area ricerca utenti  ################# -->
-    <div id="userlist" class="table-wrapper">
-        <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Data</th>
-                    <th>Ingresso</th>
-                    <th>Uscita</th>
-                    <th>Greenpass</th>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>Azienda</th>
-                    <th>motivazione</th>
-                    <th>Referente</th>
-                    <th>Targa</th>
-                    <th>Note</th>
-                    <th>Modifica</th>
-                    <th>Cancella</th>
-                </tr>
+        </div>
+        <!-- ################ end Insert new area #######################################     -->
+        <!-- ################# area di modifica ############################# -->
+        <div id="areaedit">
+            <script>
+                function editRecord() {
+                    var id = parseInt($("#theid").val());
+                    alert(typeof(id));
+                    $.ajax({
+                        url: "update.php",
+                        type: "POST",
+                        // dataType: "text",
 
-            </thead>
-            <tbody id="jsondata">
+                        data: {
+                            theid: $("#theid").val(),
+                            date2: $("#date2").val(),
+                            entry2: $("#entry2").val(),
+                            entryminutes2: $("#entryminutes2").val(),
+                            exit2: $("#exit2").val(),
+                            minutiuscita2: $("#minutiuscita2").val(),
+                            greenpass: $("#greenpass2").val(),
+                            name2: $("#name2").val(),
+                            surname2: $("#surname2").val(),
+                            company2: $("#company2").val(),
+                            goal2: $("#goal2").val(),
+                            referent2: $("#referent2").val(),
+                            countrynum2: $("#countrynum2").val(),
+                            notes2: $("#notes2").val()
 
-            </tbody>
-        </table>
-    </div>
-    <!-- ################ Insert new area #######################################     -->
-    <div id="insertnewdiv">
-        <tbody id="insertNew">
-            <div class="inserttab" id="insertnew">
-                <label for="date">DATA<input class="theinput" id="date" type="text"
-                        placeholder="dd/mm/aaaa"></label><input type="button" onclick=" getnow()"
-                    value="ADESSO" /><br /><br />
+                        },
+                        success: function(response2) {
+                            // console.log(response2);
+                            alert("response 2 " + response2);
+                            location.reload(true);
+
+                        },
+                        error: function(xhr, exception) {
+                            var msg = "";
+                            if (xhr.status === 0) {
+                                msg = "Not connect.\n Verify Network." + xhr.responseText;
+                            } else if (xhr.status == 404) {
+                                msg = "Requested page not found. [404]" + xhr.responseText;
+                            } else if (xhr.status == 500) {
+                                msg = "Internal Server Error [500]." + xhr.responseText;
+                            } else if (exception === "parsererror") {
+                                msg = "Requested JSON parse failed.";
+                            } else if (exception === "timeout") {
+                                msg = "Time out error." + xhr.responseText;
+                            } else if (exception === "abort") {
+                                msg = "Ajax request aborted.";
+                            } else {
+                                msg = "Error:" + xhr.status + " " + xhr.responseText;
+                            }
+                            alert(msg);
+                        }
+                    });
+                }
+
+                function getnowExit() {
+                    var d_ex = new Date();
+                    alert(d_ex);
+                    var month_ex = d_ex.getMonth() + 1;
+                    var ora_ex = d_ex.getHours();
+                    var minuti_ex = d_ex.getMinutes();
+
+                    if (month_ex < 10) {
+                        month_ex = "0" + month_ex;
+                    }
+
+                    var day_ex = d_ex.getDate();
+                    if (day_ex < 10) {
+                        day_ex = "0" + day_ex;
+                    }
+                    if (minuti_ex < 10) {
+                        minuti_ex = "0" + minuti_ex;
+                    }
+
+                    $("#exit").val(ora_ex);
+                    $("#minutiuscita").val(minuti_ex);
+                    alert(minuti_ex);
+
+
+
+                }
+            </script>
+            <input type="button" value="CHIUDI MODIFICA" />
+            <div class="inserttab" id="insertedit">
+                <label for="theid">ID</label><input type="text" id="theid"><br /><br />
+                <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input type="button" onclick="getnowExit()" value="ADESSO" /><br /><br />
                 <label for="entry">ENTRATA</label>
-                <span id="entrytime">
-                    <select id="entry">
+                <span id="entrytime2">
+                    <select id="entry2">
                         <option value="00">00</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -306,7 +495,7 @@
                         <option value="22">22</option>
                         <option value="23">23</option>
                     </select> :
-                    <select id="entryminutes">
+                    <select id="entryminutes2">
                         <script type="text/javascript">
                             for (var i = 0; i <= 59; i++) {
                                 if (i < 10) {
@@ -314,12 +503,11 @@
                                 }
                                 document.write("<option value='" + i + "'>" + i + "</option>");
                             }
-
                         </script>
                     </select></span><br /><br />
                 <label for="exit">USCITA</label>
-                <span id="exittime">
-                    <select id="exit">
+                <span id="exittime2">
+                    <select id="exit2">
                         <option value="00">00</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -345,7 +533,7 @@
                         <option value="22">22</option>
                         <option value="23">23</option>
                     </select> :
-                    <select id="minutiuscita">
+                    <select id="minutiuscita2">
                         <script type="text/javascript">
                             for (var i = 0; i <= 59; i++) {
                                 if (i < 10) {
@@ -353,213 +541,31 @@
                                 }
                                 document.write("<option value='" + i + "'>" + i + "</option>");
                             }
-
                         </script>
                     </select></span><br /><br />
-                <label for="greenpass">GREENPASS</label>
-                <select id="greenpass">
+                <label for="greenpass2">GREENPASS</label>
+                <select id="greenpass2">
                     <option value="si">SI</option>
                     <option value="no">NO</option>
                 </select><br /><br />
-                <label for="name">NOME</label><input id="name" type="text"><br /><br />
-                <label for="surname">COGNOME</label><input id="surname" type="text"><br /><br />
-                <label for="company">AZIENDA</label><input id="company" type="text"><br /><br />
-                <label for="goal">MOTIVO</label><input id="goal" type="text"><br /><br />
-                <label for="referent">REFERENTE</label><input id="referent" type="text"><br /><br />
-                <label for="countrynum">TARGA</label><input id="countrynum" type="text"><br /><br />
-                <label for="notes">NOTE</label><input id="notes" type="text"><br /><br />
-                <input type="button" value="INVIA" id="sender" name="sender" onclick="insertnew()" />
+                <label for="name2">NOME</label><input id="name2" type="text"><br /><br />
+                <label for="surname2">COGNOME</label><input id="surname2" type="text"><br /><br />
+                <label for="company2">AZIENDA</label><input id="company2" type="text"><br /><br />
+                <label for="goal2">MOTIVO</label><input id="goal2" type="text"><br /><br />
+                <label for="referent2">REFERENTE</label><input id="referent2" type="text"><br /><br />
+                <label for="countrynum2">TARGA</label><input id="countrynum2" type="text"><br /><br />
+                <label for="notes2">NOTE</label><input id="notes2" type="text"><br /><br />
+                <input type="button" value="INVIA" id="sender2" name="sender2" onclick="editRecord()" />
             </div>
-        </tbody>
-    </div>
-    <!-- ################ end Insert new area #######################################     -->
-    <!-- ################# area di modifica ############################# -->
-    <div id="areaedit">
-        <script>
-            function editRecord() {
-                var id = parseInt($("#theid").val());
-                alert(typeof (id));
-                $.ajax({
-                    url: "update.php",
-                    type: "POST",
-                    // dataType: "text",
-
-                    data: {
-                        theid: $("#theid").val(),
-                        date2: $("#date2").val(),
-                        entry2: $("#entry2").val(),
-                        entryminutes2: $("#entryminutes2").val(),
-                        exit2: $("#exit2").val(),
-                        minutiuscita2: $("#minutiuscita2").val(),
-                        greenpass: $("#greenpass2").val(),
-                        name2: $("#name2").val(),
-                        surname2: $("#surname2").val(),
-                        company2: $("#company2").val(),
-                        goal2: $("#goal2").val(),
-                        referent2: $("#referent2").val(),
-                        countrynum2: $("#countrynum2").val(),
-                        notes2: $("#notes2").val()
-
-                    },
-                    success: function (response2) {
-                        // console.log(response2);
-                        alert("response 2 " + response2);
-                        location.reload(true);
-
-                    },
-                    error: function (xhr, exception) {
-                        var msg = "";
-                        if (xhr.status === 0) {
-                            msg = "Not connect.\n Verify Network." + xhr.responseText;
-                        } else if (xhr.status == 404) {
-                            msg = "Requested page not found. [404]" + xhr.responseText;
-                        } else if (xhr.status == 500) {
-                            msg = "Internal Server Error [500]." + xhr.responseText;
-                        } else if (exception === "parsererror") {
-                            msg = "Requested JSON parse failed.";
-                        } else if (exception === "timeout") {
-                            msg = "Time out error." + xhr.responseText;
-                        } else if (exception === "abort") {
-                            msg = "Ajax request aborted.";
-                        } else {
-                            msg = "Error:" + xhr.status + " " + xhr.responseText;
-                        }
-                        alert(msg);
-                    }
-                });
-            }
-            function getnowExit() {
-                var d_ex = new Date();
-                alert(d_ex);
-                var month_ex = d_ex.getMonth() + 1;
-                var ora_ex = d_ex.getHours();
-                var minuti_ex = d_ex.getMinutes();
-
-                if (month_ex < 10) {
-                    month_ex = "0" + month_ex;
-                }
-
-                var day_ex = d_ex.getDate();
-                if (day_ex < 10) {
-                    day_ex = "0" + day_ex;
-                }
-                if (minuti_ex < 10) {
-                    minuti_ex = "0" + minuti_ex;
-                }
-
-                $("#exit").val(ora_ex);
-                $("#minutiuscita").val(minuti_ex);
-                alert(minuti_ex);
-
-
-
-            }
-
-
-
-        </script>
-        <input type="button" value="CHIUDI MODIFICA" />
-        <div class="inserttab" id="insertedit">
-            <label for="theid">ID</label><input type="text" id="theid"><br /><br />
-            <label for="date">DATA<input class="theinput" id="date2" type="text" placeholder="dd/mm/aaaa"></label><input
-                type="button" onclick="getnowExit()" value="ADESSO" /><br /><br />
-            <label for="entry">ENTRATA</label>
-            <span id="entrytime2">
-                <select id="entry2">
-                    <option value="00">00</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                </select> :
-                <select id="entryminutes2">
-                    <script type="text/javascript">
-                        for (var i = 0; i <= 59; i++) {
-                            if (i < 10) {
-                                i = "0" + i;
-                            }
-                            document.write("<option value='" + i + "'>" + i + "</option>");
-                        }
-
-                    </script>
-                </select></span><br /><br />
-            <label for="exit">USCITA</label>
-            <span id="exittime2">
-                <select id="exit2">
-                    <option value="00">00</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                </select> :
-                <select id="minutiuscita2">
-                    <script type="text/javascript">
-                        for (var i = 0; i <= 59; i++) {
-                            if (i < 10) {
-                                i = "0" + i;
-                            }
-                            document.write("<option value='" + i + "'>" + i + "</option>");
-                        }
-
-                    </script>
-                </select></span><br /><br />
-            <label for="greenpass2">GREENPASS</label>
-            <select id="greenpass2">
-                <option value="si">SI</option>
-                <option value="no">NO</option>
-            </select><br /><br />
-            <label for="name2">NOME</label><input id="name2" type="text"><br /><br />
-            <label for="surname2">COGNOME</label><input id="surname2" type="text"><br /><br />
-            <label for="company2">AZIENDA</label><input id="company2" type="text"><br /><br />
-            <label for="goal2">MOTIVO</label><input id="goal2" type="text"><br /><br />
-            <label for="referent2">REFERENTE</label><input id="referent2" type="text"><br /><br />
-            <label for="countrynum2">TARGA</label><input id="countrynum2" type="text"><br /><br />
-            <label for="notes2">NOTE</label><input id="notes2" type="text"><br /><br />
-            <input type="button" value="INVIA" id="sender2" name="sender2" onclick="editRecord()" />
         </div>
-    </div>
-    <!-- #########################################################
+        <!-- #########################################################
 https://www.html.it/articoli/jquery-autocomplete-plugin-tutorial-ed-esempi/
 http://www.codicefiscaleonline.com/
 ################################################### -->
-</body>
 
-</html>
+    </body>
+
+    </html>
+<?php
+}
+?>

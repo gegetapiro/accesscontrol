@@ -22,7 +22,7 @@ if (!$mysqli) {
     }
 
     // echo ("user trovato");
-    $_SESSION['usersession'] = $user;
+    $_SESSION['usersession'] = "sessionOK";
     echo "index.php";
 }
 

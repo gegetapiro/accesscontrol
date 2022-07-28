@@ -25,6 +25,7 @@
                     pw: password
                 },
                 success: function (resp) {
+                    alert (resp);
                     // var result = $('<div />').append(resp).find('#response').html();
                     // $("#response").val(resp);
                     if ((resp == "Password errata") || (resp == "utente non trovato")) {
@@ -33,7 +34,7 @@
                         return false;
                         // window.open("login.html");
                     } else {
-                        window.open(resp);
+                        window.open(resp, "_self");
                     }
 
                 }
