@@ -10,13 +10,6 @@ if (!$mysqli) {
     $azienda = $_POST["azienda"];
     $note = $_POST["note"];
     $kindaccess = $_POST["accesskind"];
-
-    /* $codicefiscale = "TRMGRD59L02F205Q";
-    $nome = "Gerardo";
-    $cognome = "Trimarco";
-    $azienda = "ZeroC";
-    $note = "Frontend controller"; */
-
     $userquery = "INSERT INTO $table2 (codiceFiscale, nome, cognome, azienda, note, workerkind)VALUES('$codicefiscale', '$nome', '$cognome', '$azienda', '$note', '$kindaccess')";
 
     $result = $mysqli->query($userquery);

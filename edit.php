@@ -41,15 +41,10 @@ if ($_SESSION["usersession"] != "sessionOK") {
                 $("#exit").val(ora_ex);
                 $("#minutiuscita").val(minuti_ex);
                 alert(minuti_ex);
-
-
-
             }
         </script>
         <div class="table-wrapper">
-
         </div>
-
         <tbody>
             <div class="inserttab">
                 <label for="date">DATA<input class="theinput" id="date" type="text" placeholder="dd/mm/aaaa"></label><input type="button" onclick=" getnowExit()" value="ADESSO USCITA" /><br /><br />

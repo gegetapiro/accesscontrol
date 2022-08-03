@@ -146,9 +146,6 @@ h2 {
 /* ############ costummizzation #################### */
 .inserttab {
     padding: 20px;
-    /* border-style: solid;
-    border-width: 0, 3px;
-    border-color: gray; */
     width: 400px;
 
 }
@@ -178,11 +175,9 @@ h2 {
     float: right;
 }
 
-#areaedit {
-    /* display: none; */
-    /*  padding: 10px;
-    box-shadow: 0px 35px 50px rgb(0 0 0 / 80%); */
-}
+/* #areaedit {
+    
+} */
 
 #insertedit {
     display: none;
@@ -194,7 +189,6 @@ h2 {
 
 #insertnewdiv {
     width: fit-content;
-    /* border: 1px solid; */
     margin: 10px;
     padding: 10px;
     box-shadow: 0px 35px 50px rgb(0 0 0 / 80%);
@@ -258,6 +252,7 @@ li {
 }
 
 li a {
+    font-size: small;
     display: block;
     color: white;
     text-align: center;
@@ -328,6 +323,7 @@ li a:hover {
     color: white;
     border-radius: 4px;
     border: #27ae60 1px solid;
+    /* border: 1px solid; */
 
     margin-top: 20px;
     margin-bottom: 20px;
@@ -362,13 +358,14 @@ li a:hover {
     background: #3594D2;
 }
 
-#response{
+#response {
     border-style: solid;
     border-width: 2px;
     border-color: #000000;
-    
+
 }
-#response{
+
+#response {
     display: none;
     width: auto;
     font-size: larger;

@@ -34,8 +34,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
 
 
             }
-
-
             $.getJSON("allowWorkers.php", function(thedata) {
                 $.each(thedata.ammessi, function(i, elem) {
                     var rowNew = "<tr><td>" + elem.id + "</td><td>" + elem.codiceFiscale + "</td><td>" +
@@ -51,6 +49,7 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <li><a href="index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
             <li class="evidenced"><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
             <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
         </ul>
         <div id="userlist" class="table-wrapper">
             <table class="fl-table">

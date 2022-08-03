@@ -71,7 +71,7 @@ if ($_SESSION["usersession"] != "sessionOK") {
                 var referente = $("#referent").val();
                 var targa = $("#countrynum").val();
                 var note = $("#notes").val();
-                // alert("va " + data + entrata + uscita);
+                // alert("va " + data + entrata + uscita);<li><a href="logout.php">LOGOUT</a></li>
                 $.ajax({
                     url: "insert.php",
                     // dataType: "JSON",
@@ -194,7 +194,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
 
                 });
                 // ################# prova di pushing ##################
-
             }
         </script>
         <ul>
@@ -203,11 +202,7 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <li><a href="showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
             <li><a href="barCodeControl/index.php">TIMBRATORE</a></li>
             <li><a href="logout.php">LOGOUT</a></li>
-            <!-- <li><a href="barCodeControl/index.php">LOG-OUT</a></li> -->
         </ul>
-        <!--  <div class="titlecontainer">
-        <h2 class="title">CONTROLLO ACCESSI</h2>
-    </div> -->
         <div id="searchform">
             <label for="searchbyfield">Ricerca</label>
             <select id="searchbyfield" onchange="">
@@ -521,11 +516,7 @@ if ($_SESSION["usersession"] != "sessionOK") {
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
+                        <option value="13">13</option><li><a href="logout.php">LOGOUT</a></li>
                         <option value="18">18</option>
                         <option value="19">19</option>
                         <option value="20">20</option>
@@ -558,11 +549,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
                 <input type="button" value="INVIA" id="sender2" name="sender2" onclick="editRecord()" />
             </div>
         </div>
-        <!-- #########################################################
-https://www.html.it/articoli/jquery-autocomplete-plugin-tutorial-ed-esempi/
-http://www.codicefiscaleonline.com/
-################################################### -->
-
     </body>
 
     </html>

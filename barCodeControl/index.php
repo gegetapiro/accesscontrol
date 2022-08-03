@@ -29,9 +29,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
                         codfisc: codfisc
                     },
                     success: function(msgresponse) {
-                        // alert(" response = " + msgresponse);
-
-                        // location.reload(true);
                         document.getElementById("showresult").style.visibility = "visible";
                         $("#showresult").html(msgresponse);
                         $("#codicefiscalemanual").val("");
@@ -50,12 +47,7 @@ if ($_SESSION["usersession"] != "sessionOK") {
                     document.getElementById("inputautomatic").style.display = "block";
                     document.getElementById("codicefiscale").focus();
                     document.getElementById("inputkeyboard").style.display = "none";
-
                 }
-
-
-
-
             }
         </script>
 
@@ -64,12 +56,8 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <li><a href="../index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
             <li><a href="../showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
             <li class="evidenced"><a href="index.php">TIMBRATORE</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
         </ul>
-        <!-- <div class="titlecontainer">
-        <h2 class="title">CONTROLLO CODICE FISCALE ED INSERIMENTO PRESENZE LAVORATORI</h2>
-    </div> -->
-
-
         <form id="inputautomatic">
             <input type="button" value="PASSA AD INSERIMENTO DA TASTIERA" onclick="changeinputtype(0)">
             <br><br>
@@ -85,16 +73,11 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <br><br>
             <div id="showresult"></div>
             <br><br>
-
-
         </div>
         <script>
             document.getElementById("codicefiscale").focus();
         </script>
     </body>
-    <!-- ########### studia ##################
-https://qabiria.com/it/risorse/blog/cosa-e-markdown-come-si-usa
-######################################################### -->
 
     </html>
 <?php

@@ -52,11 +52,8 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <li><a href="../index.php">VISUALIZZA LAVORATORI PRESENTI</a></li>
             <li><a href="../showallows.php">VISUALIZZA LAVORATORI AMMESSI</a></li>
             <li><a href="index.php">TIMBRATORE</a></li>
+            <li><a href="../logout.php">LOGOUT</a></li>
         </ul>
-        <!-- <div class="titlecontainer">
-        <h2 class="title">INSERIMENTO LAVORATORI AMMESSI</h2>
-    </div> -->
-
         <form class="formallowinput">
             <input type="text" id="fiscalCode" name="fiscalCode" placeholder="CODICE FISCALE"><br /><br />
             <input type="text" id="nome" name="nome" placeholder="NOME"><br /><br />
@@ -73,8 +70,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
             <input type="text" id="note" name="note" placeholder="NOTE"><br /><br />
             <input type="button" id="sendbut" onclick="getdata()" value="REGISTRA">
         </form>
-
-
     </body>
 
     </html>
