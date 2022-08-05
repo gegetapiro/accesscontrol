@@ -13,7 +13,7 @@ if (!$mysqli) {
             die("utente non trovato");
         }
         while ($user = $resultlogin->fetch_assoc()) {
-            if ($user['password'] != $password) {
+            if (password_verify($user['password'], $password)) {
                 die("Password errata");
             }
         }
