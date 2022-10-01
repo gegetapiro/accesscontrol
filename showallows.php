@@ -31,8 +31,6 @@ if ($_SESSION["usersession"] != "sessionOK") {
                         location.reload(true);
                     }
                 });
-
-
             }
             $.getJSON("allowWorkers.php", function(thedata) {
                 $.each(thedata.ammessi, function(i, elem) {

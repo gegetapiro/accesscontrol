@@ -25,7 +25,11 @@
                     password: newuserpw
                 },
                 success: function (response) {
+                    document.getElementById("email").value = "";
+                    document.getElementById("password").value = "";
                     alert(response);
+
+                    window.open("login.html", "_self");
 
                 }
             });
